@@ -59,6 +59,7 @@
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
+    body.modal-open { overflow: hidden; }
     img { max-width: 100%; display: block; }
     a { color: inherit; text-decoration: none; }
     button { cursor: pointer; font-family: inherit; border: none; }
@@ -71,30 +72,16 @@
 
     .section-label {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.62rem;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 500;
-      margin-bottom: 0.55rem;
-      display: block;
+      font-size: 0.62rem; letter-spacing: 0.32em; text-transform: uppercase;
+      color: var(--accent); font-weight: 500; margin-bottom: 0.55rem; display: block;
     }
     .section-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(1.9rem, 4.5vw, 3rem);
-      font-weight: 700;
-      line-height: 1.02;
-      letter-spacing: -0.03em;
-      text-transform: uppercase;
-      color: var(--text);
-      margin-bottom: 1rem;
+      font-size: clamp(1.9rem, 4.5vw, 3rem); font-weight: 700;
+      line-height: 1.02; letter-spacing: -0.03em; text-transform: uppercase;
+      color: var(--text); margin-bottom: 1rem;
     }
-    .section-sub {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      line-height: 1.75;
-      max-width: 460px;
-    }
+    .section-sub { color: var(--text-muted); font-size: 0.9rem; line-height: 1.75; max-width: 460px; }
 
     /* ═══════════════════════════════════════════
        SCROLL REVEAL
@@ -112,18 +99,14 @@
     ═══════════════════════════════════════════ */
     .container { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 28px; }
     section { padding: 100px 0; }
-
     .rule { width: 36px; height: 2px; background: var(--accent); margin: 1rem 0 1.8rem; }
     .rule.center { margin-left: auto; margin-right: auto; }
 
     /* Buttons */
     .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 13px 26px;
-      border-radius: var(--radius);
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.78rem; font-weight: 600;
-      letter-spacing: 0.14em; text-transform: uppercase;
+      display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px;
+      border-radius: var(--radius); font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
       transition: all var(--tr); cursor: pointer;
     }
     .btn-primary { background: var(--accent); color: var(--white); border: none; }
@@ -134,72 +117,43 @@
     /* ═══════════════════════════════════════════
        NAV
     ═══════════════════════════════════════════ */
-    #nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      padding: 22px 0; transition: all 0.4s ease;
-    }
+    #nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 22px 0; transition: all 0.4s ease; }
     #nav.scrolled {
-      background: rgba(8,8,8,0.96);
-      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-      padding: 13px 0;
-      border-bottom: 1px solid var(--border);
+      background: rgba(8,8,8,0.96); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      padding: 13px 0; border-bottom: 1px solid var(--border);
     }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.05rem; font-weight: 700;
-      letter-spacing: 0.06em; text-transform: uppercase; color: var(--text);
-    }
+    .nav-logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text); }
     .nav-logo em { color: var(--accent); font-style: normal; }
     .nav-links { display: flex; gap: 34px; list-style: none; }
-    .nav-links a {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.72rem; font-weight: 500;
-      letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--text-muted); transition: color var(--tr);
-    }
+    .nav-links a { font-family: 'Space Grotesk', sans-serif; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); transition: color var(--tr); }
     .nav-links a:hover { color: var(--text); }
     .nav-book-btn {
-      padding: 9px 18px; border-radius: var(--radius);
-      background: var(--accent); color: var(--white);
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      transition: all var(--tr); border: none; cursor: pointer;
+      padding: 9px 18px; border-radius: var(--radius); background: var(--accent); color: var(--white);
+      font-family: 'Space Grotesk', sans-serif; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; transition: all var(--tr); border: none; cursor: pointer;
     }
     .nav-book-btn:hover { background: #ff7e1a; box-shadow: 0 4px 14px var(--accent-glow); }
 
-    .nav-hamburger {
-      display: none; flex-direction: column; gap: 5px;
-      background: none; border: none; padding: 4px;
-    }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 4px; }
     .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--text); transition: all var(--tr); }
     .nav-hamburger.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
     .nav-hamburger.active span:nth-child(2) { opacity: 0; }
     .nav-hamburger.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
     .nav-mobile-menu {
-      display: none; position: fixed; inset: 0;
-      background: rgba(8,8,8,0.99); z-index: 999;
-      flex-direction: column; align-items: flex-start; justify-content: center;
-      padding: 0 36px;
+      display: none; position: fixed; inset: 0; background: rgba(8,8,8,0.99); z-index: 999;
+      flex-direction: column; align-items: flex-start; justify-content: center; padding: 0 36px;
     }
     .nav-mobile-menu.open { display: flex; }
     .nav-mobile-menu a {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 2.4rem; font-weight: 700;
-      letter-spacing: -0.02em; text-transform: uppercase;
-      color: var(--text); padding: 16px 0;
-      border-bottom: 1px solid var(--border); width: 100%;
-      transition: color var(--tr);
+      font-family: 'Space Grotesk', sans-serif; font-size: 2.4rem; font-weight: 700;
+      letter-spacing: -0.02em; text-transform: uppercase; color: var(--text);
+      padding: 16px 0; border-bottom: 1px solid var(--border); width: 100%; transition: color var(--tr);
     }
     .nav-mobile-menu a:first-of-type { border-top: 1px solid var(--border); }
     .nav-mobile-menu a:hover { color: var(--accent); }
-    .nav-mobile-close {
-      position: absolute; top: 24px; right: 28px;
-      background: none; border: none;
-      color: var(--text-muted); font-size: 2rem; line-height: 1;
-    }
+    .nav-mobile-close { position: absolute; top: 24px; right: 28px; background: none; border: none; color: var(--text-muted); font-size: 2rem; line-height: 1; }
 
     @media (max-width: 768px) {
       .nav-links, .nav-book-btn { display: none; }
@@ -209,428 +163,75 @@
     /* ═══════════════════════════════════════════
        HERO
     ═══════════════════════════════════════════ */
-    #hero {
-      position: relative; min-height: 100svh;
-      display: flex; align-items: flex-end;
-      padding: 0; overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background-color: #0a0a0a;
-      background-image: url('assets/hero-studio.png');
-      background-size: cover;
-      background-position: center 30%;
-      background-repeat: no-repeat;
-    }
-    .hero-overlay {
-      position: absolute; inset: 0;
-      background:
-        linear-gradient(to right, rgba(8,8,8,0.97) 0%, rgba(8,8,8,0.72) 48%, rgba(8,8,8,0.18) 100%),
-        linear-gradient(to top, rgba(8,8,8,0.96) 0%, transparent 55%);
-    }
-    .hero-grain {
-      position: absolute; inset: 0; opacity: 0.038; pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-size: 180px 180px;
-    }
+    #hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background-color: #0a0a0a; background-image: url('assets/hero-studio.png'); background-size: cover; background-position: center 30%; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(8,8,8,0.97) 0%, rgba(8,8,8,0.72) 48%, rgba(8,8,8,0.18) 100%), linear-gradient(to top, rgba(8,8,8,0.96) 0%, transparent 55%); }
+    .hero-grain { position: absolute; inset: 0; opacity: 0.038; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 180px 180px; }
 
-    .hero-content {
-      position: relative; z-index: 1; width: 100%;
-      padding: 0 28px 80px;
-      max-width: calc(1120px + 56px); margin: 0 auto;
-    }
-
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 12px;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.62rem; font-weight: 500;
-      letter-spacing: 0.32em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 22px;
-      animation: fadeUp 0.8s ease both;
-    }
+    .hero-content { position: relative; z-index: 1; width: 100%; padding: 0 28px 80px; max-width: calc(1120px + 56px); margin: 0 auto; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 12px; font-family: 'Space Grotesk', sans-serif; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent); margin-bottom: 22px; animation: fadeUp 0.8s ease both; }
     .hero-eyebrow::before { content: ''; width: 18px; height: 1px; background: var(--accent); }
-
-    .hero-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(3.5rem, 9.5vw, 7.5rem);
-      font-weight: 700; line-height: 0.9;
-      letter-spacing: -0.035em; text-transform: uppercase;
-      color: var(--text); margin-bottom: 26px;
-      animation: fadeUp 0.9s ease 0.1s both;
-    }
+    .hero-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(3.5rem, 9.5vw, 7.5rem); font-weight: 700; line-height: 0.9; letter-spacing: -0.035em; text-transform: uppercase; color: var(--text); margin-bottom: 26px; animation: fadeUp 0.9s ease 0.1s both; }
     .hero-title .line-accent { display: block; color: var(--accent); }
-    .hero-title .line-outline {
-      display: block;
-      -webkit-text-stroke: 1.5px rgba(255,255,255,0.22);
-      color: transparent;
-    }
-
-    .hero-tagline {
-      font-size: clamp(0.87rem, 1.4vw, 1rem);
-      color: var(--text-muted); line-height: 1.75;
-      max-width: 360px; margin-bottom: 34px;
-      animation: fadeUp 0.9s ease 0.2s both;
-    }
-
-    .hero-ctas {
-      display: flex; gap: 12px; flex-wrap: wrap;
-      margin-bottom: 56px;
-      animation: fadeUp 0.9s ease 0.3s both;
-    }
-
-    .hero-stats-strip {
-      display: flex; align-items: stretch;
-      border-top: 1px solid var(--border); padding-top: 26px;
-      animation: fadeUp 0.9s ease 0.42s both;
-    }
+    .hero-title .line-outline { display: block; -webkit-text-stroke: 1.5px rgba(255,255,255,0.22); color: transparent; }
+    .hero-tagline { font-size: clamp(0.87rem, 1.4vw, 1rem); color: var(--text-muted); line-height: 1.75; max-width: 360px; margin-bottom: 34px; animation: fadeUp 0.9s ease 0.2s both; }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 56px; animation: fadeUp 0.9s ease 0.3s both; }
+    .hero-stats-strip { display: flex; align-items: stretch; border-top: 1px solid var(--border); padding-top: 26px; animation: fadeUp 0.9s ease 0.42s both; }
     .hero-stat { flex: 1; padding-right: 28px; }
     .hero-stat + .hero-stat { padding-left: 28px; border-left: 1px solid var(--border); }
-    .hero-stat-num {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.9rem; font-weight: 700;
-      letter-spacing: -0.03em; line-height: 1; color: var(--text); margin-bottom: 5px;
-    }
+    .hero-stat-num { font-family: 'Space Grotesk', sans-serif; font-size: 1.9rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1; color: var(--text); margin-bottom: 5px; }
     .hero-stat-num em { color: var(--accent); font-style: normal; }
-    .hero-stat-label {
-      font-size: 0.6rem; font-weight: 500; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--text-faint);
-    }
-
-    .hero-scroll-hint {
-      position: absolute; bottom: 40px; right: 44px;
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      opacity: 0.3; z-index: 1;
-      animation: fadeUp 1s ease 1.2s both;
-    }
-    .hero-scroll-hint span {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase;
-      writing-mode: vertical-rl; color: var(--text-muted);
-    }
-    .hero-scroll-hint::after {
-      content: ''; width: 1px; height: 38px;
-      background: linear-gradient(to bottom, var(--text-muted), transparent);
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    .hero-stat-label { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-faint); }
+    .hero-scroll-hint { position: absolute; bottom: 40px; right: 44px; display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0.3; z-index: 1; animation: fadeUp 1s ease 1.2s both; }
+    .hero-scroll-hint span { font-family: 'Space Grotesk', sans-serif; font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; writing-mode: vertical-rl; color: var(--text-muted); }
+    .hero-scroll-hint::after { content: ''; width: 1px; height: 38px; background: linear-gradient(to bottom, var(--text-muted), transparent); }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
 
     /* ═══════════════════════════════════════════
        SERVICES
     ═══════════════════════════════════════════ */
     #services { background: var(--bg-2); }
-
-    .services-header {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 40px; align-items: end; margin-bottom: 60px;
-    }
+    .services-header { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; margin-bottom: 60px; }
     @media (max-width: 680px) {
       .services-header { grid-template-columns: 1fr; gap: 16px; }
       .services-header-right { align-items: flex-start !important; }
       .services-header-right .section-sub { text-align: left !important; max-width: none !important; }
     }
-    .services-header-right {
-      display: flex; flex-direction: column; align-items: flex-end;
-    }
-
-    /* Editorial list */
+    .services-header-right { display: flex; flex-direction: column; align-items: flex-end; }
     .services-list { border-top: 1px solid var(--border); }
-
-    .service-item {
-      display: grid; grid-template-columns: 1fr auto;
-      align-items: center; gap: 24px;
-      padding: 24px 0 24px 16px;
-      border-bottom: 1px solid var(--border);
-      border-left: 2px solid transparent;
-      transition: border-left-color var(--tr), background var(--tr);
-      cursor: default;
-    }
+    .service-item { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 24px; padding: 24px 0 24px 16px; border-bottom: 1px solid var(--border); border-left: 2px solid transparent; transition: border-left-color var(--tr); cursor: default; }
     .service-item:hover { border-left-color: var(--accent); }
     .service-item:hover .service-item-name { color: var(--white); }
-
-    .service-item-name {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em;
-      color: var(--text); margin-bottom: 4px;
-      transition: color var(--tr);
-    }
-    .service-item-desc {
-      font-size: 0.8rem; color: var(--text-muted); line-height: 1.55;
-    }
-    .service-item-dur {
-      display: inline-flex; align-items: center; gap: 5px;
-      font-size: 0.68rem; color: var(--text-faint);
-      letter-spacing: 0.04em; margin-top: 8px;
-    }
-
-    .service-item-right {
-      display: flex; flex-direction: column; align-items: flex-end; gap: 10px; flex-shrink: 0;
-    }
-    .service-item-price {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.45rem; font-weight: 700; letter-spacing: -0.02em;
-      color: var(--text);
-    }
-    .service-item-price sup {
-      font-size: 0.58em; font-weight: 400; color: var(--text-muted); vertical-align: super;
-    }
-    .service-item-book {
-      padding: 6px 14px;
-      background: transparent; border: 1px solid var(--border);
-      border-radius: var(--radius);
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.68rem; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--text-faint);
-      opacity: 0; transition: all var(--tr);
-    }
+    .service-item-name { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; color: var(--text); margin-bottom: 4px; transition: color var(--tr); }
+    .service-item-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.55; }
+    .service-item-dur { display: inline-flex; align-items: center; gap: 5px; font-size: 0.68rem; color: var(--text-faint); letter-spacing: 0.04em; margin-top: 8px; }
+    .service-item-right { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; flex-shrink: 0; }
+    .service-item-price { font-family: 'Space Grotesk', sans-serif; font-size: 1.45rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
+    .service-item-price sup { font-size: 0.58em; font-weight: 400; color: var(--text-muted); vertical-align: super; }
+    .service-item-book { padding: 6px 14px; background: transparent; border: 1px solid var(--border); border-radius: var(--radius); font-family: 'Space Grotesk', sans-serif; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-faint); opacity: 0; transition: all var(--tr); }
     .service-item:hover .service-item-book { opacity: 1; color: var(--accent); border-color: var(--accent); }
     .service-item-book:hover { background: var(--accent) !important; color: var(--white) !important; border-color: var(--accent) !important; }
-
-    .services-note {
-      margin-top: 22px; font-size: 0.76rem;
-      color: var(--text-faint); font-style: italic;
-    }
+    .services-note { margin-top: 22px; font-size: 0.76rem; color: var(--text-faint); font-style: italic; }
 
     /* ═══════════════════════════════════════════
-       BOOKING
+       BOOKING SECTION (anchor + CTA)
     ═══════════════════════════════════════════ */
-    #booking {
-      background: var(--bg); position: relative;
-    }
-    #booking::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border-mid), transparent);
-    }
-    .booking-header { margin-bottom: 36px; }
+    #booking { background: var(--bg); position: relative; }
+    #booking::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--border-mid), transparent); }
 
-    .booking-layout {
-      display: grid; grid-template-columns: 1fr 252px; gap: 36px;
-    }
-    @media (max-width: 860px) { .booking-layout { grid-template-columns: 1fr; } }
+    .booking-cta-layout { display: grid; grid-template-columns: 1fr 252px; gap: 40px; }
+    @media (max-width: 860px) { .booking-cta-layout { grid-template-columns: 1fr; } }
 
-    .booking-widget {
-      background: var(--bg-2); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); overflow: hidden;
+    .booking-open-card {
+      background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius-lg);
+      padding: 40px; display: flex; flex-direction: column; gap: 20px;
     }
-
-    /* Steps with animated progress bar */
-    .booking-steps {
-      display: flex; background: var(--bg-3);
-      border-bottom: 1px solid var(--border);
-      position: relative;
-    }
-    .booking-steps::after {
-      content: ''; position: absolute; bottom: 0; left: 0; height: 2px;
-      background: var(--accent); transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
-      width: var(--progress, 33.33%);
-    }
-    .booking-step {
-      flex: 1; display: flex; align-items: center; gap: 9px;
-      padding: 15px 18px; opacity: 0.38; transition: opacity var(--tr);
-    }
-    .booking-step.active { opacity: 1; }
-    .booking-step.done { opacity: 0.58; }
-    .step-num {
-      width: 23px; height: 23px; border-radius: 50%;
-      border: 1px solid currentColor; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Space Grotesk', sans-serif; font-size: 0.68rem; font-weight: 700;
-      color: var(--text-muted);
-    }
-    .booking-step.active .step-num { color: var(--accent); border-color: var(--accent); }
-    .booking-step.done .step-num { background: var(--accent); border-color: var(--accent); color: var(--white); }
-    .step-label {
-      font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; font-weight: 500;
-      letter-spacing: 0.09em; text-transform: uppercase; color: var(--text-muted);
-    }
-    .booking-step.active .step-label { color: var(--text); }
-    @media (max-width: 540px) {
-      .step-label { display: none; }
-      .booking-step { justify-content: center; padding: 14px 10px; }
-    }
-
-    .booking-panel { display: none; padding: 30px; }
-    .booking-panel.active { display: block; }
-
-    /* Service options */
-    .svc-options {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(190px,1fr));
-      gap: 9px; margin-bottom: 22px;
-    }
-    .svc-option {
-      border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 14px; cursor: pointer; transition: all var(--tr);
-      background: var(--bg-3);
-    }
-    .svc-option:hover { border-color: var(--border-mid); background: var(--bg-4); }
-    .svc-option.selected { border-color: var(--accent); background: rgba(255,107,0,0.06); }
-    .svc-option-name {
-      font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 0.85rem;
-      letter-spacing: -0.01em; color: var(--text); margin-bottom: 4px;
-    }
-    .svc-option-price {
-      font-family: 'Space Grotesk', sans-serif; color: var(--accent);
-      font-size: 1rem; font-weight: 700;
-    }
-    .svc-option-dur { font-size: 0.7rem; color: var(--text-faint); margin-top: 2px; }
-
-    /* Calendar */
-    .calendar-wrap { max-width: 340px; }
-    .cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
-    .cal-month-label {
-      font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 600; letter-spacing: -0.01em;
-    }
-    .cal-nav-btn {
-      width: 30px; height: 30px; border-radius: var(--radius);
-      background: var(--bg-4); border: 1px solid var(--border); color: var(--text-muted);
-      display: flex; align-items: center; justify-content: center; transition: all var(--tr);
-    }
-    .cal-nav-btn:hover { border-color: var(--border-mid); color: var(--text); }
-    .cal-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 3px; }
-    .cal-day-name {
-      text-align: center; font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.62rem; letter-spacing: 0.1em; color: var(--text-faint);
-      text-transform: uppercase; padding: 3px 0 9px;
-    }
-    .cal-day {
-      aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
-      border-radius: var(--radius); font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.83rem; cursor: pointer; transition: all var(--tr);
-      font-weight: 500; position: relative;
-    }
-    .cal-day:hover:not(.disabled):not(.empty) { background: var(--bg-5); color: var(--text); }
-    .cal-day.selected { background: var(--accent); color: var(--white); font-weight: 700; }
-    .cal-day.today:not(.selected) { color: var(--accent); font-weight: 700; }
-    .cal-day.today:not(.selected)::after {
-      content: ''; position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%);
-      width: 3px; height: 3px; border-radius: 50%; background: var(--accent);
-    }
-    .cal-day.disabled { color: var(--text-faint); cursor: default; opacity: 0.28; }
-    .cal-day.empty { cursor: default; }
-
-    /* Time slots */
-    .time-slots-wrap { margin-top: 26px; }
-    .time-slots-title {
-      font-family: 'Space Grotesk', sans-serif; font-size: 0.68rem;
-      letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px;
-    }
-    .time-slots-grid { display: flex; flex-wrap: wrap; gap: 7px; }
-    .time-slot {
-      padding: 7px 13px; border-radius: var(--radius);
-      border: 1px solid var(--border); background: var(--bg-3);
-      font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; font-weight: 500;
-      color: var(--text-muted); cursor: pointer; transition: all var(--tr);
-    }
-    .time-slot:hover { border-color: var(--border-mid); color: var(--text); }
-    .time-slot.selected { background: var(--accent); border-color: var(--accent); color: var(--white); font-weight: 600; }
-
-    /* Booking form */
-    .booking-form-header {
-      display: flex; align-items: flex-start; gap: 12px;
-      padding: 13px 15px;
-      background: rgba(255,107,0,0.05); border: 1px solid rgba(255,107,0,0.2);
-      border-radius: var(--radius); margin-bottom: 22px;
-    }
-    .booking-summary-text { font-size: 0.83rem; color: var(--text-muted); line-height: 1.45; }
-    .booking-summary-text strong { color: var(--accent); font-weight: 600; }
-
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-    .form-row.single { grid-template-columns: 1fr; }
-    @media (max-width: 520px) { .form-row { grid-template-columns: 1fr; } }
-
-    .form-group label {
-      display: block; font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--text-faint); margin-bottom: 6px;
-    }
-    .form-group input, .form-group select {
-      width: 100%; padding: 11px 13px;
-      background: var(--bg-3); border: 1px solid var(--border);
-      border-radius: var(--radius); color: var(--text); font-size: 0.9rem;
-      transition: border-color var(--tr); outline: none;
-      appearance: none; -webkit-appearance: none;
-    }
-    .form-group input:focus, .form-group select:focus { border-color: var(--accent); }
-    .form-group input::placeholder { color: var(--text-faint); }
-
-    .form-note { font-size: 0.73rem; color: var(--text-faint); margin: 11px 0 18px; line-height: 1.5; }
-    .form-note a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
-
-    .btn-book-submit {
-      width: 100%; padding: 14px 26px;
-      background: var(--accent); color: var(--white);
-      border-radius: var(--radius); font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.82rem; font-weight: 700; letter-spacing: 0.14em;
-      text-transform: uppercase; border: none; transition: all var(--tr); cursor: pointer;
-    }
-    .btn-book-submit:hover { background: #ff7e1a; transform: translateY(-1px); box-shadow: 0 6px 20px var(--accent-glow); }
-
-    /* Confirmation */
-    .booking-confirmation { display: none; text-align: center; padding: 52px 28px; }
-    .booking-confirmation.show { display: block; }
-    .confirm-icon {
-      width: 60px; height: 60px; border-radius: 50%;
-      background: rgba(255,107,0,0.08); border: 1px solid var(--accent);
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 18px;
-    }
-    .confirm-title {
-      font-family: 'Space Grotesk', sans-serif; font-size: 1.7rem;
-      font-weight: 700; letter-spacing: -0.02em; text-transform: uppercase;
-      color: var(--text); margin-bottom: 8px;
-    }
-    .confirm-sub {
-      color: var(--text-muted); font-size: 0.87rem; line-height: 1.65;
-      max-width: 340px; margin: 0 auto 22px;
-    }
-    .confirm-details {
-      background: var(--bg-3); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 16px;
-      margin: 0 auto 22px; max-width: 340px; text-align: left;
-    }
-    .confirm-row {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 7px 0; font-size: 0.83rem; border-bottom: 1px solid var(--border);
-    }
-    .confirm-row:last-child { border-bottom: none; }
-    .confirm-row span:first-child { color: var(--text-muted); }
-    .confirm-row span:last-child { color: var(--text); font-weight: 500; }
-
-    .panel-nav { display: flex; gap: 10px; margin-top: 18px; }
-    .panel-back {
-      padding: 10px 18px; background: transparent;
-      border: 1px solid var(--border); border-radius: var(--radius);
-      font-family: 'Space Grotesk', sans-serif; color: var(--text-muted);
-      font-size: 0.78rem; letter-spacing: 0.06em; transition: all var(--tr);
-    }
-    .panel-back:hover { border-color: var(--border-mid); color: var(--text); }
-    .panel-next {
-      padding: 10px 22px; background: var(--accent); color: var(--white);
-      border-radius: var(--radius); font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em;
-      text-transform: uppercase; border: none; transition: all var(--tr);
-    }
-    .panel-next:hover { background: #ff7e1a; }
-    .panel-next:disabled { opacity: 0.28; cursor: not-allowed; }
+    .booking-open-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; max-width: 420px; }
 
     /* Hours sidebar */
-    .hours-card {
-      background: var(--bg-2); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); padding: 22px;
-      align-self: start; position: sticky; top: 88px;
-    }
-    .hours-title {
-      font-family: 'Space Grotesk', sans-serif; font-size: 0.6rem;
-      letter-spacing: 0.28em; text-transform: uppercase;
-      color: var(--text-muted); margin-bottom: 14px;
-    }
-    .hours-row {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 8px 0; font-size: 0.82rem; border-bottom: 1px solid var(--border);
-    }
+    .hours-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; align-self: start; position: sticky; top: 88px; }
+    .hours-title { font-family: 'Space Grotesk', sans-serif; font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
+    .hours-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; font-size: 0.82rem; border-bottom: 1px solid var(--border); }
     .hours-row:last-child { border-bottom: none; }
     .hours-day { color: var(--text-muted); font-weight: 500; }
     .hours-time { color: var(--text); font-family: 'Space Grotesk', sans-serif; }
@@ -639,167 +240,241 @@
     .hours-today .hours-time { color: var(--accent); font-weight: 600; }
 
     /* ═══════════════════════════════════════════
+       BOOKING MODAL
+    ═══════════════════════════════════════════ */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 2000;
+      background: rgba(0,0,0,0.88); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      align-items: center; justify-content: center; padding: 16px;
+    }
+    .modal-overlay.open { display: flex; }
+
+    .modal-box {
+      background: var(--bg-2); border: 1px solid var(--border-mid);
+      border-radius: 8px; width: 100%; max-width: 680px;
+      max-height: calc(100vh - 32px); overflow-y: auto;
+      position: relative; display: flex; flex-direction: column;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.8);
+    }
+    .modal-box::-webkit-scrollbar { width: 4px; }
+    .modal-box::-webkit-scrollbar-track { background: transparent; }
+    .modal-box::-webkit-scrollbar-thumb { background: var(--border-mid); border-radius: 4px; }
+
+    .modal-close {
+      position: absolute; top: 16px; right: 16px; z-index: 10;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--bg-4); border: 1px solid var(--border);
+      color: var(--text-muted); font-size: 1.2rem; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      transition: all var(--tr);
+    }
+    .modal-close:hover { border-color: var(--border-mid); color: var(--text); }
+
+    /* Modal header / progress */
+    .modal-header { padding: 28px 28px 0; flex-shrink: 0; }
+    .modal-title-row {
+      display: flex; align-items: baseline; justify-content: space-between;
+      margin-bottom: 16px; padding-right: 40px;
+    }
+    .modal-title-text { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; text-transform: uppercase; }
+    .modal-step-indicator { font-size: 0.68rem; color: var(--text-faint); letter-spacing: 0.1em; font-family: 'Space Grotesk', sans-serif; }
+
+    .modal-progress { height: 2px; background: var(--border); border-radius: 1px; margin-bottom: 20px; overflow: hidden; }
+    .modal-progress-bar { height: 100%; background: var(--accent); width: 33.33%; transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
+
+    .modal-steps-row { display: flex; border-top: 1px solid var(--border); margin: 0 -28px; }
+    .modal-step {
+      flex: 1; display: flex; align-items: center; gap: 8px; padding: 13px 18px;
+      opacity: 0.35; transition: opacity var(--tr);
+    }
+    .modal-step.active { opacity: 1; }
+    .modal-step.done { opacity: 0.55; }
+    .modal-step-num {
+      width: 22px; height: 22px; border-radius: 50%; border: 1px solid currentColor; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', sans-serif; font-size: 0.66rem; font-weight: 700; color: var(--text-muted);
+    }
+    .modal-step.active .modal-step-num { color: var(--accent); border-color: var(--accent); }
+    .modal-step.done .modal-step-num { background: var(--accent); border-color: var(--accent); color: var(--white); }
+    .modal-step-label { font-family: 'Space Grotesk', sans-serif; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; color: var(--text-muted); }
+    .modal-step.active .modal-step-label { color: var(--text); }
+    @media (max-width: 480px) { .modal-step-label { display: none; } .modal-step { justify-content: center; } }
+
+    /* Modal panels */
+    .modal-panel { display: none; padding: 24px 28px 28px; }
+    .modal-panel.active { display: block; }
+    .modal-panel-hint { font-size: 0.76rem; color: var(--text-muted); margin-bottom: 14px; letter-spacing: 0.02em; }
+
+    /* ─── SERVICE OPTIONS ─── */
+    .svc-options { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap: 9px; margin-bottom: 20px; }
+    .svc-option { border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; cursor: pointer; transition: all var(--tr); background: var(--bg-3); }
+    .svc-option:hover { border-color: var(--border-mid); background: var(--bg-4); }
+    .svc-option.selected { border-color: var(--accent); background: rgba(255,107,0,0.06); }
+    .svc-option-name { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 0.85rem; letter-spacing: -0.01em; color: var(--text); margin-bottom: 4px; }
+    .svc-option-price { font-family: 'Space Grotesk', sans-serif; color: var(--accent); font-size: 1rem; font-weight: 700; }
+    .svc-option-dur { font-size: 0.7rem; color: var(--text-faint); margin-top: 2px; }
+
+    /* ─── CALENDAR ─── */
+    .modal-date-time-layout { display: grid; grid-template-columns: auto 1fr; gap: 28px; }
+    @media (max-width: 540px) { .modal-date-time-layout { grid-template-columns: 1fr; } }
+
+    .calendar-wrap { min-width: 240px; }
+    .cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .cal-month-label { font-family: 'Space Grotesk', sans-serif; font-size: 0.92rem; font-weight: 600; letter-spacing: -0.01em; }
+    .cal-nav-btn { width: 30px; height: 30px; border-radius: var(--radius); background: var(--bg-4); border: 1px solid var(--border); color: var(--text-muted); display: flex; align-items: center; justify-content: center; transition: all var(--tr); }
+    .cal-nav-btn:hover { border-color: var(--border-mid); color: var(--text); }
+    .cal-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 3px; }
+    .cal-day-name { text-align: center; font-family: 'Space Grotesk', sans-serif; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--text-faint); text-transform: uppercase; padding: 3px 0 8px; }
+    .cal-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: var(--radius); font-family: 'Space Grotesk', sans-serif; font-size: 0.82rem; cursor: pointer; transition: all var(--tr); font-weight: 500; position: relative; }
+    .cal-day:hover:not(.disabled):not(.empty) { background: var(--bg-5); color: var(--text); }
+    .cal-day.selected { background: var(--accent); color: var(--white); font-weight: 700; }
+    .cal-day.today:not(.selected) { color: var(--accent); font-weight: 700; }
+    .cal-day.today:not(.selected)::after { content: ''; position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%); width: 3px; height: 3px; border-radius: 50%; background: var(--accent); }
+    .cal-day.disabled { color: var(--text-faint); cursor: default; opacity: 0.28; }
+    .cal-day.empty { cursor: default; }
+
+    /* ─── TIME SLOTS ─── */
+    .time-slots-wrap { padding-top: 2px; }
+    .time-slots-title { font-family: 'Space Grotesk', sans-serif; font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
+    .time-slots-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+    .time-slot { padding: 7px 12px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--bg-3); font-family: 'Space Grotesk', sans-serif; font-size: 0.78rem; font-weight: 500; color: var(--text-muted); cursor: pointer; transition: all var(--tr); }
+    .time-slot:hover { border-color: var(--border-mid); color: var(--text); }
+    .time-slot.selected { background: var(--accent); border-color: var(--accent); color: var(--white); font-weight: 600; }
+    .slot-note { font-size: 0.7rem; color: var(--text-faint); margin-top: 10px; line-height: 1.5; }
+
+    /* ─── BOOKING FORM ─── */
+    .booking-summary-bar {
+      display: flex; align-items: flex-start; gap: 12px; padding: 13px 15px;
+      background: rgba(255,107,0,0.05); border: 1px solid rgba(255,107,0,0.2);
+      border-radius: var(--radius); margin-bottom: 20px;
+    }
+    .booking-summary-text { font-size: 0.83rem; color: var(--text-muted); line-height: 1.45; }
+    .booking-summary-text strong { color: var(--accent); font-weight: 600; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .form-row.single { grid-template-columns: 1fr; }
+    @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+
+    .form-group label { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 0.64rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 6px; }
+    .form-group input { width: 100%; padding: 11px 13px; background: var(--bg-3); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text); font-size: 0.9rem; transition: border-color var(--tr); outline: none; }
+    .form-group input:focus { border-color: var(--accent); }
+    .form-group input::placeholder { color: var(--text-faint); }
+
+    .form-note { font-size: 0.72rem; color: var(--text-faint); margin: 10px 0 16px; line-height: 1.5; }
+    .btn-book-submit { width: 100%; padding: 14px 26px; background: var(--accent); color: var(--white); border-radius: var(--radius); font-family: 'Space Grotesk', sans-serif; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; border: none; transition: all var(--tr); cursor: pointer; }
+    .btn-book-submit:hover { background: #ff7e1a; transform: translateY(-1px); box-shadow: 0 6px 20px var(--accent-glow); }
+
+    /* ─── CONFIRMATION PANEL ─── */
+    .confirm-screen { text-align: center; padding: 8px 0 4px; }
+    .confirm-icon { width: 56px; height: 56px; border-radius: 50%; background: rgba(255,107,0,0.08); border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+    .confirm-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; text-transform: uppercase; color: var(--text); margin-bottom: 6px; }
+    .confirm-sub { color: var(--text-muted); font-size: 0.85rem; line-height: 1.65; max-width: 380px; margin: 0 auto 20px; }
+
+    .confirm-details { background: var(--bg-3); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; margin: 0 auto 20px; max-width: 400px; text-align: left; }
+    .confirm-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; font-size: 0.82rem; border-bottom: 1px solid var(--border); }
+    .confirm-row:last-child { border-bottom: none; }
+    .confirm-row span:first-child { color: var(--text-muted); }
+    .confirm-row span:last-child { color: var(--text); font-weight: 500; font-family: 'Space Grotesk', sans-serif; }
+
+    /* Action buttons row */
+    .confirm-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 16px; }
+    .confirm-action-btn {
+      display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px;
+      border-radius: var(--radius); font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      background: var(--bg-4); border: 1px solid var(--border-mid); color: var(--text-muted);
+      cursor: pointer; transition: all var(--tr); text-decoration: none;
+    }
+    .confirm-action-btn:hover { border-color: rgba(255,255,255,0.28); color: var(--text); transform: translateY(-1px); }
+    .confirm-action-btn.primary { background: var(--accent); border-color: var(--accent); color: var(--white); }
+    .confirm-action-btn.primary:hover { background: #ff7e1a; }
+
+    /* ─── MODAL NAV BUTTONS ─── */
+    .modal-nav { display: flex; gap: 10px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .modal-nav-spacer { flex: 1; }
+    .panel-back { padding: 10px 18px; background: transparent; border: 1px solid var(--border); border-radius: var(--radius); font-family: 'Space Grotesk', sans-serif; color: var(--text-muted); font-size: 0.78rem; letter-spacing: 0.06em; transition: all var(--tr); }
+    .panel-back:hover { border-color: var(--border-mid); color: var(--text); }
+    .panel-next { padding: 10px 22px; background: var(--accent); color: var(--white); border-radius: var(--radius); font-family: 'Space Grotesk', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border: none; transition: all var(--tr); }
+    .panel-next:hover { background: #ff7e1a; }
+    .panel-next:disabled { opacity: 0.28; cursor: not-allowed; }
+
+    /* ═══════════════════════════════════════════
        LOCATION
     ═══════════════════════════════════════════ */
     #location { background: var(--bg-2); overflow: hidden; }
-    .location-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-    }
+    .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
     @media (max-width: 768px) { .location-grid { grid-template-columns: 1fr; gap: 40px; } }
-
-    .location-address {
-      display: flex; gap: 14px; margin: 26px 0; padding: 16px;
-      background: var(--bg-3); border-radius: var(--radius); border: 1px solid var(--border);
-    }
+    .location-address { display: flex; gap: 14px; margin: 26px 0; padding: 16px; background: var(--bg-3); border-radius: var(--radius); border: 1px solid var(--border); }
     .location-pin { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
-    .location-address-text strong {
-      display: block; font-family: 'Space Grotesk', sans-serif;
-      color: var(--text); font-size: 0.92rem; font-weight: 600; margin-bottom: 4px;
-    }
+    .location-address-text strong { display: block; font-family: 'Space Grotesk', sans-serif; color: var(--text); font-size: 0.92rem; font-weight: 600; margin-bottom: 4px; }
     .location-address-text span { font-size: 0.82rem; color: var(--text-muted); line-height: 1.55; }
-
     .location-transport { display: flex; flex-direction: column; gap: 12px; }
     .transport-item { display: flex; align-items: flex-start; gap: 12px; font-size: 0.83rem; color: var(--text-muted); line-height: 1.55; }
     .transport-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 7px; }
-
-    .map-wrap {
-      border-radius: var(--radius-lg); overflow: hidden;
-      border: 1px solid var(--border); box-shadow: var(--shadow); height: 420px;
-    }
-    .map-wrap iframe {
-      width: 100%; height: 100%; border: none;
-      filter: invert(0.88) hue-rotate(180deg) saturate(0.55) brightness(0.82);
-    }
+    .map-wrap { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); height: 420px; }
+    .map-wrap iframe { width: 100%; height: 100%; border: none; filter: invert(0.88) hue-rotate(180deg) saturate(0.55) brightness(0.82); }
 
     /* ═══════════════════════════════════════════
        INSTAGRAM
     ═══════════════════════════════════════════ */
     #instagram { background: var(--bg); text-align: center; }
     .ig-header { margin-bottom: 44px; }
-
-    .ig-grid {
-      display: grid; grid-template-columns: repeat(3,1fr); gap: 2px;
-      margin-bottom: 36px; border-radius: var(--radius); overflow: hidden;
-    }
+    .ig-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-bottom: 36px; border-radius: var(--radius); overflow: hidden; }
     @media (max-width: 480px) { .ig-grid { grid-template-columns: repeat(2,1fr); } }
-
-    .ig-placeholder {
-      aspect-ratio: 1; background: var(--bg-3);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 8px; position: relative; overflow: hidden;
-      transition: all var(--tr); cursor: pointer;
-    }
-    .ig-placeholder::after {
-      content: 'View on IG'; position: absolute; inset: 0;
-      background: rgba(255,107,0,0.88); opacity: 0; transition: opacity var(--tr);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Space Grotesk', sans-serif; font-size: 0.68rem;
-      font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--white);
-    }
+    .ig-placeholder { aspect-ratio: 1; background: var(--bg-3); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; position: relative; overflow: hidden; transition: all var(--tr); cursor: pointer; }
+    .ig-placeholder::after { content: 'View on IG'; position: absolute; inset: 0; background: rgba(255,107,0,0.88); opacity: 0; transition: opacity var(--tr); display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--white); }
     .ig-placeholder:hover::after { opacity: 1; }
     .ig-placeholder .ig-icon { opacity: 0.15; }
-    .ig-placeholder .ig-label {
-      font-family: 'Space Grotesk', sans-serif; font-size: 0.62rem;
-      color: var(--text-faint); letter-spacing: 0.18em; text-transform: uppercase;
-    }
-
+    .ig-placeholder .ig-label { font-family: 'Space Grotesk', sans-serif; font-size: 0.62rem; color: var(--text-faint); letter-spacing: 0.18em; text-transform: uppercase; }
     .ig-embed-item { aspect-ratio: 1; overflow: hidden; }
     .ig-embed-item iframe, .ig-embed-item blockquote { width: 100% !important; min-width: 0 !important; }
-
     .ig-cta-wrap { display: flex; flex-direction: column; align-items: center; gap: 14px; }
-    .ig-handle {
-      font-family: 'Space Grotesk', sans-serif; font-size: 1rem;
-      font-weight: 600; letter-spacing: 0.06em; color: var(--text-muted);
-    }
-    .ig-follow-btn {
-      display: inline-flex; align-items: center; gap: 10px; padding: 12px 26px;
-      background: transparent; border: 1px solid var(--border-mid); color: var(--text);
-      border-radius: var(--radius); font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
-      transition: all var(--tr);
-    }
+    .ig-handle { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 600; letter-spacing: 0.06em; color: var(--text-muted); }
+    .ig-follow-btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 26px; background: transparent; border: 1px solid var(--border-mid); color: var(--text); border-radius: var(--radius); font-family: 'Space Grotesk', sans-serif; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; transition: all var(--tr); }
     .ig-follow-btn:hover { border-color: rgba(255,255,255,0.3); transform: translateY(-2px); }
 
     /* ═══════════════════════════════════════════
        FOOTER
     ═══════════════════════════════════════════ */
     footer { background: var(--bg-2); border-top: 1px solid var(--border); padding: 60px 0 36px; }
-    .footer-grid {
-      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 44px;
-    }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 44px; }
     @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; gap: 32px; } }
-
-    .footer-brand-name {
-      font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700;
-      letter-spacing: -0.01em; text-transform: uppercase; color: var(--text); margin-bottom: 10px;
-    }
+    .footer-brand-name { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; letter-spacing: -0.01em; text-transform: uppercase; color: var(--text); margin-bottom: 10px; }
     .footer-brand-name em { color: var(--accent); font-style: normal; }
     .footer-brand-tagline { font-size: 0.82rem; color: var(--text-muted); line-height: 1.75; max-width: 250px; margin-bottom: 22px; }
-
     .footer-social { display: flex; gap: 9px; }
-    .footer-social a {
-      width: 34px; height: 34px; border-radius: var(--radius); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--text-muted); transition: all var(--tr);
-    }
+    .footer-social a { width: 34px; height: 34px; border-radius: var(--radius); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--text-muted); transition: all var(--tr); }
     .footer-social a:hover { border-color: var(--border-mid); color: var(--text); }
-
-    .footer-col-title {
-      font-family: 'Space Grotesk', sans-serif; font-size: 0.6rem;
-      letter-spacing: 0.28em; text-transform: uppercase; color: var(--text-muted);
-      font-weight: 600; margin-bottom: 14px;
-    }
+    .footer-col-title { font-family: 'Space Grotesk', sans-serif; font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--text-muted); font-weight: 600; margin-bottom: 14px; }
     .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
     .footer-links a, .footer-links li { font-size: 0.83rem; color: var(--text-muted); transition: color var(--tr); }
     .footer-links a:hover { color: var(--text); }
-
-    .footer-bottom {
-      padding-top: 22px; border-top: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
-    }
+    .footer-bottom { padding-top: 22px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
     .footer-copy { font-size: 0.73rem; color: var(--text-faint); }
     .footer-copy em { color: var(--accent); font-style: normal; }
 
     /* ═══════════════════════════════════════════
        STICKY CTA
     ═══════════════════════════════════════════ */
-    #sticky-cta {
-      display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 900;
-      padding: 12px 16px max(12px, env(safe-area-inset-bottom));
-      background: rgba(8,8,8,0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border-top: 1px solid var(--border);
-      transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
-    }
+    #sticky-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 900; padding: 12px 16px max(12px, env(safe-area-inset-bottom)); background: rgba(8,8,8,0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-top: 1px solid var(--border); transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
     #sticky-cta.visible { transform: translateY(0); }
     .sticky-cta-inner { display: flex; align-items: center; gap: 12px; }
     .sticky-cta-text { flex: 1; min-width: 0; }
-    .sticky-cta-text strong {
-      display: block; font-family: 'Space Grotesk', sans-serif; font-size: 0.87rem; font-weight: 600;
-      color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
+    .sticky-cta-text strong { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 0.87rem; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .sticky-cta-text span { font-size: 0.7rem; color: var(--text-muted); }
-    .sticky-cta-btn {
-      padding: 11px 19px; background: var(--accent); color: var(--white);
-      border-radius: var(--radius); font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-      white-space: nowrap; flex-shrink: 0; border: none;
-    }
+    .sticky-cta-btn { padding: 11px 19px; background: var(--accent); color: var(--white); border-radius: var(--radius); font-family: 'Space Grotesk', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; flex-shrink: 0; border: none; }
 
     @media (max-width: 768px) {
       #sticky-cta { display: block; }
       section { padding: 70px 0; }
       .hero-content { padding-bottom: 76px; }
-      .booking-panel { padding: 18px; }
+      .modal-header { padding: 20px 20px 0; }
+      .modal-panel { padding: 18px 20px 24px; }
+      .modal-steps-row { margin: 0 -20px; }
     }
 
     /* Toast */
-    .toast {
-      position: fixed; bottom: 80px; right: 20px; z-index: 9999;
-      padding: 12px 18px; background: var(--bg-4); border: 1px solid var(--border-mid);
-      border-radius: var(--radius); font-size: 0.82rem; color: var(--text);
-      transform: translateY(18px); opacity: 0; transition: all 0.28s ease;
-      pointer-events: none; max-width: 250px;
-    }
+    .toast { position: fixed; bottom: 80px; right: 20px; z-index: 9999; padding: 12px 18px; background: var(--bg-4); border: 1px solid var(--border-mid); border-radius: var(--radius); font-size: 0.82rem; color: var(--text); transform: translateY(18px); opacity: 0; transition: all 0.28s ease; pointer-events: none; max-width: 250px; }
     .toast.show { transform: translateY(0); opacity: 1; }
   </style>
 </head>
@@ -816,7 +491,7 @@
         <li><a href="#location">Find Us</a></li>
         <li><a href="#instagram">Gallery</a></li>
       </ul>
-      <a href="#booking" class="nav-book-btn">Book Now</a>
+      <button class="nav-book-btn" onclick="openBookingModal()">Book Now</button>
       <button class="nav-hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -827,7 +502,7 @@
 <div class="nav-mobile-menu" id="mobileMenu">
   <button class="nav-mobile-close" id="mobileMenuClose" aria-label="Close">&times;</button>
   <a href="#services" class="mobile-nav-link">Services</a>
-  <a href="#booking" class="mobile-nav-link">Book Now</a>
+  <a href="#" class="mobile-nav-link" onclick="openBookingModal();return false;">Book Now</a>
   <a href="#location" class="mobile-nav-link">Find Us</a>
   <a href="#instagram" class="mobile-nav-link">Gallery</a>
 </div>
@@ -854,10 +529,10 @@
     </p>
 
     <div class="hero-ctas">
-      <a href="#booking" class="btn btn-primary">
+      <button onclick="openBookingModal()" class="btn btn-primary">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         Book Your Seat
-      </a>
+      </button>
       <a href="#services" class="btn btn-ghost">View Services</a>
     </div>
 
@@ -908,125 +583,28 @@
 </section>
 
 
-<!-- BOOKING -->
+<!-- BOOKING (anchor + CTA) -->
 <section id="booking">
   <div class="container">
-    <div class="booking-layout">
+    <div class="booking-cta-layout">
       <div>
-        <div class="booking-header reveal">
+        <div class="reveal">
           <span class="section-label">Reserve Your Spot</span>
           <h2 class="section-title">Book an<br>Appointment</h2>
           <div class="rule"></div>
           <p class="section-sub">Choose your service, pick a time — we'll hold your seat. No walk-in wait.</p>
         </div>
-
-        <div class="booking-widget reveal reveal-delay-1" id="bookingWidget">
-          <div class="booking-steps" id="bookingSteps">
-            <div class="booking-step active" data-step="1">
-              <div class="step-num">1</div>
-              <div class="step-label">Service</div>
-            </div>
-            <div class="booking-step" data-step="2">
-              <div class="step-num">2</div>
-              <div class="step-label">Date &amp; Time</div>
-            </div>
-            <div class="booking-step" data-step="3">
-              <div class="step-num">3</div>
-              <div class="step-label">Your Details</div>
-            </div>
-          </div>
-
-          <!-- Panel 1: Service -->
-          <div class="booking-panel active" id="panel1">
-            <p style="font-size:0.76rem;color:var(--text-muted);margin-bottom:14px;letter-spacing:0.02em;">Select the service you'd like:</p>
-            <div class="svc-options" id="svcOptions"></div>
-            <div class="panel-nav">
-              <button class="panel-next" id="step1Next" disabled onclick="goStep(2)">Continue &rarr;</button>
-            </div>
-          </div>
-
-          <!-- Panel 2: Date & Time -->
-          <div class="booking-panel" id="panel2">
-            <div class="calendar-wrap">
-              <div class="cal-header">
-                <button class="cal-nav-btn" id="calPrev" aria-label="Previous month">&#8592;</button>
-                <span class="cal-month-label" id="calMonthLabel"></span>
-                <button class="cal-nav-btn" id="calNext" aria-label="Next month">&#8594;</button>
-              </div>
-              <div class="cal-grid" id="calGrid"></div>
-            </div>
-            <div class="time-slots-wrap" id="timeSlotsWrap" style="display:none;">
-              <div class="time-slots-title" id="timeSlotsTitle"></div>
-              <div class="time-slots-grid" id="timeSlotsGrid"></div>
-            </div>
-            <div class="panel-nav" style="margin-top:20px;">
-              <button class="panel-back" onclick="goStep(1)">&larr; Back</button>
-              <button class="panel-next" id="step2Next" disabled onclick="goStep(3)">Continue &rarr;</button>
-            </div>
-          </div>
-
-          <!-- Panel 3: Details -->
-          <div class="booking-panel" id="panel3">
-            <div class="booking-form-header" id="bookingSummaryBar">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              <div class="booking-summary-text" id="summaryText"></div>
-            </div>
-
-            <form id="bookingForm" novalidate>
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="guestName">Full Name *</label>
-                  <input type="text" id="guestName" name="name" placeholder="Your name" required autocomplete="name">
-                </div>
-                <div class="form-group">
-                  <label for="guestPhone">Phone *</label>
-                  <input type="tel" id="guestPhone" name="phone" placeholder="(403) 555-0100" required autocomplete="tel">
-                </div>
-              </div>
-              <div class="form-row single">
-                <div class="form-group">
-                  <label for="guestEmail">Email *</label>
-                  <input type="email" id="guestEmail" name="email" placeholder="you@example.com" required autocomplete="email">
-                </div>
-              </div>
-              <div class="form-row single">
-                <div class="form-group">
-                  <label for="guestNotes">Notes (optional)</label>
-                  <input type="text" id="guestNotes" name="notes" placeholder="Any preferences, first-time visit, etc.">
-                </div>
-              </div>
-              <p class="form-note">By booking you confirm you're cool with a quick reminder text.</p>
-              <div class="booking-submit-row">
-                <button type="submit" class="btn-book-submit">Confirm Appointment</button>
-              </div>
-              <p class="form-note" style="margin-top:10px;">
-                Or <a href="#" id="mailtoFallback">send request by email</a> if the form isn't working.
-              </p>
-            </form>
-            <div class="panel-nav" style="margin-top:4px;">
-              <button class="panel-back" onclick="goStep(2)">&larr; Back</button>
-            </div>
-          </div>
-
-          <!-- Confirmation -->
-          <div class="booking-confirmation" id="bookingConfirmation">
-            <div class="confirm-icon">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <div class="confirm-title">You're Booked</div>
-            <p class="confirm-sub">Your appointment request has been saved. Steveo will confirm within a few hours via text or email.</p>
-            <div class="confirm-details" id="confirmDetails"></div>
-            <a href="#" id="addCalLink" class="btn btn-ghost" style="display:inline-flex;margin-bottom:14px;">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              Add to Calendar
-            </a>
-            <br>
-            <button onclick="resetBooking()" class="panel-back">Book Another</button>
+        <div class="booking-open-card reveal reveal-delay-1">
+          <p>Select your service, date, and time in our 3-step booking wizard. Your request is saved instantly — Steveo will confirm within a few hours via text or email.</p>
+          <div>
+            <button onclick="openBookingModal()" class="btn btn-primary" style="font-size:0.85rem;padding:15px 32px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Open Booking Wizard
+            </button>
           </div>
         </div>
       </div>
 
-      <!-- Hours sidebar -->
       <div>
         <div class="hours-card reveal reveal-delay-2" id="hoursCard">
           <div class="hours-title">Hours</div>
@@ -1034,7 +612,7 @@
           <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);">
             <div style="font-size:0.76rem;color:var(--text-muted);line-height:1.7;">
               25 Greenbriar Dr NW<br>Calgary, AB T3B 6M3
-</div>
+            </div>
             <a href="tel:+14031234567" style="display:flex;align-items:center;gap:8px;margin-top:11px;font-size:0.82rem;color:var(--accent);font-family:'Space Grotesk',sans-serif;font-weight:600;">
               (403) 123-4567
             </a>
@@ -1087,12 +665,12 @@
 
       <div class="reveal reveal-delay-2">
         <div class="map-wrap">
+          <!-- No-API-key embed — works on any static host -->
           <iframe
             title="Steveo's Shop location map"
             loading="lazy"
-            allowfullscreen
             referrerpolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU3Luo&q=25+Greenbriar+Dr+NW+Calgary+AB+T3B+6M3&zoom=15">
+            src="https://www.google.com/maps?q=25%20Greenbriar%20Dr%20NW%20Calgary%20AB%20T3B%206M3&output=embed">
           </iframe>
         </div>
         <p style="font-size:0.7rem;color:var(--text-faint);margin-top:8px;text-align:right;">
@@ -1149,7 +727,7 @@
         <div class="footer-col-title">Menu</div>
         <ul class="footer-links">
           <li><a href="#services">Services &amp; Pricing</a></li>
-          <li><a href="#booking">Book Appointment</a></li>
+          <li><a href="#" onclick="openBookingModal();return false;">Book Appointment</a></li>
           <li><a href="#location">Location</a></li>
           <li><a href="#instagram">Gallery</a></li>
         </ul>
@@ -1162,7 +740,7 @@
           <li style="color:var(--text-faint);">Monday: Closed</li>
         </ul>
         <div style="margin-top:18px;">
-          <a href="#booking" class="btn btn-primary" style="padding:10px 18px;font-size:0.74rem;">Book Now</a>
+          <button onclick="openBookingModal()" class="btn btn-primary" style="padding:10px 18px;font-size:0.74rem;">Book Now</button>
         </div>
       </div>
     </div>
@@ -1175,6 +753,142 @@
 </footer>
 
 
+<!-- BOOKING MODAL -->
+<div id="bookingModal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Book an Appointment">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+
+    <!-- Header with progress -->
+    <div class="modal-header">
+      <div class="modal-title-row">
+        <span class="modal-title-text">Book Appointment</span>
+        <span class="modal-step-indicator" id="modalStepIndicator">Step 1 of 3</span>
+      </div>
+      <div class="modal-progress">
+        <div class="modal-progress-bar" id="modalProgressBar"></div>
+      </div>
+      <div class="modal-steps-row">
+        <div class="modal-step active" data-mstep="1">
+          <span class="modal-step-num">1</span>
+          <span class="modal-step-label">Service</span>
+        </div>
+        <div class="modal-step" data-mstep="2">
+          <span class="modal-step-num">2</span>
+          <span class="modal-step-label">Date &amp; Time</span>
+        </div>
+        <div class="modal-step" data-mstep="3">
+          <span class="modal-step-num">3</span>
+          <span class="modal-step-label">Your Details</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 1: Choose Service -->
+    <div class="modal-panel active" id="mPanel1">
+      <p class="modal-panel-hint">Select the service you'd like:</p>
+      <div class="svc-options" id="svcOptions"></div>
+      <div class="modal-nav">
+        <span class="modal-nav-spacer"></span>
+        <button class="panel-next" id="step1Next" disabled onclick="goModalStep(2)">Continue &rarr;</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Date & Time -->
+    <div class="modal-panel" id="mPanel2">
+      <div class="modal-date-time-layout">
+        <div class="calendar-wrap">
+          <div class="cal-header">
+            <button class="cal-nav-btn" id="calPrev" aria-label="Previous month">&#8592;</button>
+            <span class="cal-month-label" id="calMonthLabel"></span>
+            <button class="cal-nav-btn" id="calNext" aria-label="Next month">&#8594;</button>
+          </div>
+          <div class="cal-grid" id="calGrid"></div>
+        </div>
+        <div class="time-slots-wrap" id="timeSlotsWrap" style="display:none;">
+          <div class="time-slots-title" id="timeSlotsTitle"></div>
+          <div class="time-slots-grid" id="timeSlotsGrid"></div>
+          <p class="slot-note" id="slotNote"></p>
+        </div>
+      </div>
+      <div class="modal-nav">
+        <button class="panel-back" onclick="goModalStep(1)">&larr; Back</button>
+        <span class="modal-nav-spacer"></span>
+        <button class="panel-next" id="step2Next" disabled onclick="goModalStep(3)">Continue &rarr;</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Customer Details -->
+    <div class="modal-panel" id="mPanel3">
+      <div class="booking-summary-bar" id="bookingSummaryBar">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div class="booking-summary-text" id="summaryText"></div>
+      </div>
+      <form id="bookingForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="guestName">Full Name *</label>
+            <input type="text" id="guestName" name="name" placeholder="Your name" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="guestPhone">Phone *</label>
+            <input type="tel" id="guestPhone" name="phone" placeholder="(403) 555-0100" required autocomplete="tel">
+          </div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group">
+            <label for="guestEmail">Email *</label>
+            <input type="email" id="guestEmail" name="email" placeholder="you@example.com" required autocomplete="email">
+          </div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group">
+            <label for="guestNotes">Notes (optional)</label>
+            <input type="text" id="guestNotes" name="notes" placeholder="Preferences, first visit, etc.">
+          </div>
+        </div>
+        <p class="form-note">By booking you agree to a quick confirmation text from Steveo.</p>
+        <button type="submit" class="btn-book-submit">Confirm Appointment</button>
+      </form>
+      <div class="modal-nav" style="margin-top:12px;">
+        <button class="panel-back" onclick="goModalStep(2)">&larr; Back</button>
+      </div>
+    </div>
+
+    <!-- Step 4: Confirmation -->
+    <div class="modal-panel" id="mPanel4">
+      <div class="confirm-screen">
+        <div class="confirm-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="confirm-title">Request Saved</div>
+        <p class="confirm-sub">Your booking is saved locally. Steveo will confirm within a few hours via text or email.</p>
+        <div class="confirm-details" id="confirmDetails"></div>
+        <div class="confirm-actions">
+          <button class="confirm-action-btn primary" id="emailSteveoBtn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Email Steveo
+          </button>
+          <button class="confirm-action-btn" id="emailMeBtn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Email Me
+          </button>
+          <button class="confirm-action-btn" id="copyBtn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy Details
+          </button>
+          <a href="#" id="addCalLink" class="confirm-action-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Add to Calendar
+          </a>
+        </div>
+        <p class="form-note" style="margin-top:6px;">Buttons open your default email/calendar app. Check spam if email doesn't arrive.</p>
+        <button onclick="resetBooking()" class="panel-back" style="margin-top:8px;">Book Another</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <!-- Sticky CTA (mobile) -->
 <div id="sticky-cta">
   <div class="sticky-cta-inner">
@@ -1182,9 +896,7 @@
       <strong>Steveo's Shop</strong>
       <span>Calgary NW — Tue-Sat 10–7, Sun 11–5</span>
     </div>
-    <button class="sticky-cta-btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">
-      Book Now
-    </button>
+    <button class="sticky-cta-btn" onclick="openBookingModal()">Book Now</button>
   </div>
 </div>
 
@@ -1192,6 +904,11 @@
 
 
 <script>
+/* ─────────────────────────────────────────────
+   CONFIG — easy to update
+───────────────────────────────────────────── */
+const STEVEO_EMAIL = 'steveo@example.com'; // ← change to real email
+
 /* ─────────────────────────────────────────────
    DATA
 ───────────────────────────────────────────── */
@@ -1217,6 +934,7 @@ const HOURS = {
 
 const IG_POSTS = [];
 const IG_GRID_COUNT = 6;
+const SLOT_SIZE = 30; // minutes — all booking slots are 30 min
 
 let booking = { service: null, date: null, time: null, name: '', phone: '', email: '', notes: '' };
 let calYear, calMonth;
@@ -1233,11 +951,68 @@ document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initStickyCta();
   initMobileMenu();
-  updateProgressBar(1);
+  initModal();
 });
 
 /* ═════════════════════════════════════════════
-   SERVICES
+   MODAL OPEN / CLOSE
+═════════════════════════════════════════════ */
+function openBookingModal(serviceId) {
+  const modal = document.getElementById('bookingModal');
+  modal.classList.add('open');
+  document.body.classList.add('modal-open');
+  if (serviceId) {
+    booking.service = SERVICES.find(s => s.id === serviceId);
+  }
+  renderSvcOptions();
+  setModalStep(booking.service ? 1 : 1);
+}
+
+function closeBookingModal() {
+  document.getElementById('bookingModal').classList.remove('open');
+  document.body.classList.remove('modal-open');
+}
+
+function initModal() {
+  const modal = document.getElementById('bookingModal');
+  document.getElementById('modalClose').addEventListener('click', closeBookingModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeBookingModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closeBookingModal(); });
+  document.getElementById('bookingForm').addEventListener('submit', handleFormSubmit);
+}
+
+/* ═════════════════════════════════════════════
+   MODAL STEP NAV
+═════════════════════════════════════════════ */
+function goModalStep(n) {
+  if (n === 2 && !booking.service) { showToast('Please select a service first.'); return; }
+  if (n === 3 && (!booking.date || !booking.time)) { showToast('Please pick a date and time.'); return; }
+  setModalStep(n);
+  if (n === 2) buildCalendar();
+  if (n === 3) updateSummaryBar();
+}
+
+function setModalStep(n) {
+  // Panels (1–4)
+  for (let i = 1; i <= 4; i++) {
+    const p = document.getElementById(`mPanel${i}`);
+    if (p) p.classList.toggle('active', i === n);
+  }
+  // Step dots (1–3 only)
+  document.querySelectorAll('.modal-step').forEach(s => {
+    const sn = parseInt(s.dataset.mstep);
+    s.classList.toggle('active', sn === n);
+    s.classList.toggle('done', sn < n);
+  });
+  // Progress bar & indicator
+  const pct = Math.min((n / 3) * 100, 100);
+  document.getElementById('modalProgressBar').style.width = `${pct}%`;
+  const labels = ['Step 1 of 3', 'Step 2 of 3', 'Step 3 of 3', 'Confirmed'];
+  document.getElementById('modalStepIndicator').textContent = labels[n - 1] || '';
+}
+
+/* ═════════════════════════════════════════════
+   SERVICES (page list + booking widget)
 ═════════════════════════════════════════════ */
 function renderServices() {
   const list = document.querySelector('.services-list');
@@ -1253,73 +1028,12 @@ function renderServices() {
       </div>
       <div class="service-item-right">
         <div class="service-item-price"><sup>$</sup>${svc.price}</div>
-        <button class="service-item-book" onclick="quickBook('${svc.id}')">Book &rarr;</button>
+        <button class="service-item-book" onclick="openBookingModal('${svc.id}')">Book &rarr;</button>
       </div>
     </div>
   `).join('');
 }
 
-function quickBook(serviceId) {
-  booking.service = SERVICES.find(s => s.id === serviceId);
-  document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
-  setTimeout(() => goStep(2), 600);
-  document.querySelectorAll('.svc-option').forEach(el => {
-    el.classList.toggle('selected', el.dataset.id === serviceId);
-  });
-}
-
-/* ═════════════════════════════════════════════
-   HOURS
-═════════════════════════════════════════════ */
-function renderHours() {
-  const today = new Date().getDay();
-  const container = document.getElementById('hoursRows');
-  const order = [1,2,3,4,5,6,0];
-  container.innerHTML = order.map(day => {
-    const h = HOURS[day];
-    const isToday = day === today;
-    const timeStr = h.open
-      ? `${fmt12(h.start)} – ${fmt12(h.end)}`
-      : '<span class="hours-closed">Closed</span>';
-    return `<div class="hours-row ${isToday ? 'hours-today' : ''}">
-      <span class="hours-day">${h.label.slice(0,3)}</span>
-      <span class="hours-time">${timeStr}</span>
-    </div>`;
-  }).join('');
-}
-
-function fmt12([h, m]) {
-  const ampm = h >= 12 ? 'pm' : 'am';
-  const h12 = h % 12 || 12;
-  return m ? `${h12}:${String(m).padStart(2,'0')}${ampm}` : `${h12}${ampm}`;
-}
-
-/* ═════════════════════════════════════════════
-   STEP NAV
-═════════════════════════════════════════════ */
-function goStep(n) {
-  if (n === 2 && !booking.service) return;
-  if (n === 3 && (!booking.date || !booking.time)) return;
-
-  document.querySelectorAll('.booking-panel').forEach((p, i) => p.classList.toggle('active', i + 1 === n));
-  document.querySelectorAll('.booking-step').forEach((s, i) => {
-    const stepN = i + 1;
-    s.classList.toggle('active', stepN === n);
-    s.classList.toggle('done', stepN < n);
-  });
-  updateProgressBar(n);
-  if (n === 2) { renderSvcOptions(); buildCalendar(); }
-  if (n === 3) { updateSummaryBar(); }
-}
-
-function updateProgressBar(step) {
-  const el = document.getElementById('bookingSteps');
-  if (el) el.style.setProperty('--progress', `${(step / 3) * 100}%`);
-}
-
-/* ═════════════════════════════════════════════
-   PANEL 1
-═════════════════════════════════════════════ */
 function renderSvcOptions() {
   const container = document.getElementById('svcOptions');
   container.innerHTML = SERVICES.map(svc => `
@@ -1340,11 +1054,33 @@ function selectService(id) {
 }
 
 /* ═════════════════════════════════════════════
-   PANEL 2 — CALENDAR
+   HOURS SIDEBAR
+═════════════════════════════════════════════ */
+function renderHours() {
+  const today = new Date().getDay();
+  const container = document.getElementById('hoursRows');
+  const order = [1,2,3,4,5,6,0];
+  container.innerHTML = order.map(day => {
+    const h = HOURS[day];
+    const isToday = day === today;
+    const timeStr = h.open ? `${fmt12(h.start)} – ${fmt12(h.end)}` : '<span class="hours-closed">Closed</span>';
+    return `<div class="hours-row ${isToday ? 'hours-today' : ''}">
+      <span class="hours-day">${h.label.slice(0,3)}</span>
+      <span class="hours-time">${timeStr}</span>
+    </div>`;
+  }).join('');
+}
+
+function fmt12([h, m]) {
+  const ampm = h >= 12 ? 'pm' : 'am'; const h12 = h % 12 || 12;
+  return m ? `${h12}:${String(m).padStart(2,'0')}${ampm}` : `${h12}${ampm}`;
+}
+
+/* ═════════════════════════════════════════════
+   CALENDAR
 ═════════════════════════════════════════════ */
 function initCalendar() {
-  const now = new Date();
-  calYear = now.getFullYear(); calMonth = now.getMonth();
+  const now = new Date(); calYear = now.getFullYear(); calMonth = now.getMonth();
   document.getElementById('calPrev').addEventListener('click', () => {
     const now = new Date();
     if (calYear === now.getFullYear() && calMonth === now.getMonth()) return;
@@ -1379,8 +1115,7 @@ function buildCalendar() {
     if (isPast || isClosed) cls += ' disabled';
     if (isToday) cls += ' today';
     if (isSelected) cls += ' selected';
-    const clickable = !isPast && !isClosed;
-    html += `<div class="${cls}" ${clickable ? `onclick="selectDate(${calYear},${calMonth},${d})"` : ''}>${d}</div>`;
+    html += `<div class="${cls}" ${(!isPast && !isClosed) ? `onclick="selectDate(${calYear},${calMonth},${d})"` : ''}>${d}</div>`;
   }
   grid.innerHTML = html;
   if (booking.date) renderTimeSlots(booking.date);
@@ -1395,58 +1130,52 @@ function selectDate(y, m, d) {
 }
 
 /* ═════════════════════════════════════════════
-   PANEL 2 — TIME SLOTS
+   TIME SLOTS (always 30-min increments)
 ═════════════════════════════════════════════ */
 function renderTimeSlots(date) {
   const wrap = document.getElementById('timeSlotsWrap');
   const title = document.getElementById('timeSlotsTitle');
   const grid = document.getElementById('timeSlotsGrid');
   wrap.style.display = 'block';
+
   const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   const dow = date.getDay();
   const h = HOURS[dow];
   title.textContent = `Available times — ${dayNames[dow]}`;
-  // All slots are 30-min increments regardless of service duration
-  const SLOT_SIZE = 30;
+
   const slots = generateSlots(h.start, h.end, SLOT_SIZE);
   const now = new Date();
-  // Compare using local calendar date strings to avoid timezone issues
+  // Timezone-safe today comparison using local date parts
   const todayStr = `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`;
-  const dateStr2 = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
-  const isToday = dateStr2 === todayStr;
-  const nowMins = now.getHours() * 60 + now.getMinutes();
+  const dateStr  = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+  const isToday  = dateStr === todayStr;
+  const nowMins  = now.getHours() * 60 + now.getMinutes();
+
   grid.innerHTML = slots.map(slot => {
-    const [slotH, slotM] = slot.split(':').map(Number);
-    const slotMins = slotH * 60 + slotM;
+    const [sh, sm] = slot.split(':').map(Number);
+    const slotMins = sh * 60 + sm;
     if (isToday && slotMins <= nowMins) {
       return `<div class="time-slot" style="opacity:0.2;cursor:default;" aria-disabled="true">${formatTime(slot)}</div>`;
     }
     return `<div class="time-slot ${booking.time === slot ? 'selected' : ''}" data-slot="${slot}" onclick="selectTime('${slot}')">${formatTime(slot)}</div>`;
   }).join('');
 
-  // Show note if service spans multiple 30-min blocks
-  const svcDur = booking.service ? booking.service.duration : 30;
-  const blocksNeeded = Math.ceil(svcDur / SLOT_SIZE);
-  let noteEl = document.getElementById('slotNote');
-  if (!noteEl) {
-    noteEl = document.createElement('p');
-    noteEl.id = 'slotNote';
-    noteEl.style.cssText = 'font-size:0.72rem;color:var(--text-faint);margin-top:12px;line-height:1.5;';
-    wrap.appendChild(noteEl);
-  }
-  if (blocksNeeded > 1) {
-    noteEl.textContent = `This service takes ~${svcDur} min — please arrive on time so your full slot is available.`;
-  } else {
-    noteEl.textContent = '';
+  // Multi-block note
+  const svcDur = booking.service?.duration ?? SLOT_SIZE;
+  const noteEl = document.getElementById('slotNote');
+  if (noteEl) {
+    noteEl.textContent = svcDur > SLOT_SIZE
+      ? `This service takes ~${svcDur} min — please arrive on time so your full appointment is available.`
+      : '';
   }
 }
 
-function generateSlots([startH, startM], [endH, endM], slotSize) {
+function generateSlots([startH, startM], [endH, endM], size) {
   const slots = []; let cur = startH * 60 + startM; const finish = endH * 60 + endM;
-  while (cur + slotSize <= finish) {
-    const h = Math.floor(cur / 60); const m = cur % 60;
+  while (cur + size <= finish) {
+    const h = Math.floor(cur / 60), m = cur % 60;
     slots.push(`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`);
-    cur += slotSize;
+    cur += size;
   }
   return slots;
 }
@@ -1459,43 +1188,34 @@ function formatTime(slot) {
 
 function selectTime(slot) {
   booking.time = slot;
-  document.querySelectorAll('.time-slot[data-slot]').forEach(el => {
-    el.classList.toggle('selected', el.dataset.slot === slot);
-  });
+  document.querySelectorAll('.time-slot[data-slot]').forEach(el => el.classList.toggle('selected', el.dataset.slot === slot));
   document.getElementById('step2Next').disabled = false;
 }
 
 /* ═════════════════════════════════════════════
-   PANEL 3
+   SUMMARY BAR (step 3)
 ═════════════════════════════════════════════ */
 function updateSummaryBar() {
-  const dateStr = booking.date ? booking.date.toLocaleDateString('en-CA', { weekday:'long', month:'long', day:'numeric' }) : '';
-  document.getElementById('summaryText').innerHTML = `<strong>${booking.service?.name}</strong><br>${dateStr} at ${formatTime(booking.time)}`;
-  updateMailtoFallback();
-}
-
-function updateMailtoFallback() {
-  const link = document.getElementById('mailtoFallback');
-  const subject = encodeURIComponent(`Appointment Request — ${booking.service?.name}`);
-  const body = encodeURIComponent(`Hi Steveo,\n\nI'd like to book:\n\nService: ${booking.service?.name}\nDate: ${booking.date?.toLocaleDateString()}\nTime: ${formatTime(booking.time)}\n\nPlease confirm.\n\nThanks`);
-  link.href = `mailto:steveo@example.com?subject=${subject}&body=${body}`;
+  const dateStr = booking.date
+    ? booking.date.toLocaleDateString('en-CA', { weekday:'long', month:'long', day:'numeric' })
+    : '';
+  document.getElementById('summaryText').innerHTML =
+    `<strong>${booking.service?.name}</strong><br>${dateStr} at ${formatTime(booking.time)}`;
 }
 
 /* ═════════════════════════════════════════════
    FORM SUBMIT
 ═════════════════════════════════════════════ */
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('bookingForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    booking.name  = document.getElementById('guestName').value.trim();
-    booking.phone = document.getElementById('guestPhone').value.trim();
-    booking.email = document.getElementById('guestEmail').value.trim();
-    booking.notes = document.getElementById('guestNotes').value.trim();
-    if (!booking.name || !booking.phone || !booking.email) { showToast('Please fill in all required fields.'); return; }
-    saveBookingToLocalStorage();
-    showConfirmation();
-  });
-});
+function handleFormSubmit(e) {
+  e.preventDefault();
+  booking.name  = document.getElementById('guestName').value.trim();
+  booking.phone = document.getElementById('guestPhone').value.trim();
+  booking.email = document.getElementById('guestEmail').value.trim();
+  booking.notes = document.getElementById('guestNotes').value.trim();
+  if (!booking.name || !booking.phone || !booking.email) { showToast('Please fill in all required fields.'); return; }
+  saveBookingToLocalStorage();
+  showConfirmation();
+}
 
 function saveBookingToLocalStorage() {
   const record = {
@@ -1509,40 +1229,99 @@ function saveBookingToLocalStorage() {
   localStorage.setItem('steveos_bookings', JSON.stringify(existing));
 }
 
+/* ═════════════════════════════════════════════
+   CONFIRMATION SCREEN
+═════════════════════════════════════════════ */
 function showConfirmation() {
-  document.querySelectorAll('.booking-panel').forEach(p => p.style.display = 'none');
-  document.querySelector('.booking-steps').style.display = 'none';
-  document.getElementById('bookingConfirmation').classList.add('show');
   const dateStr = booking.date?.toLocaleDateString('en-CA', { weekday:'long', month:'long', day:'numeric', year:'numeric' });
+  const timeStr = formatTime(booking.time);
+
   document.getElementById('confirmDetails').innerHTML = `
     <div class="confirm-row"><span>Service</span><span>${booking.service?.name}</span></div>
     <div class="confirm-row"><span>Date</span><span>${dateStr}</span></div>
-    <div class="confirm-row"><span>Time</span><span>${formatTime(booking.time)}</span></div>
+    <div class="confirm-row"><span>Time</span><span>${timeStr}</span></div>
     <div class="confirm-row"><span>Duration</span><span>${booking.service?.duration} min</span></div>
+    <div class="confirm-row"><span>Price</span><span>$${booking.service?.price}</span></div>
     <div class="confirm-row"><span>Name</span><span>${booking.name}</span></div>
-    <div class="confirm-row"><span>Contact</span><span>${booking.phone}</span></div>
+    <div class="confirm-row"><span>Phone</span><span>${booking.phone}</span></div>
+    <div class="confirm-row"><span>Email</span><span>${booking.email}</span></div>
+    ${booking.notes ? `<div class="confirm-row"><span>Notes</span><span>${booking.notes}</span></div>` : ''}
   `;
-  buildAddToCalLink();
+
+  // Build confirmation text for clipboard / emails
+  const confirmText = buildConfirmText(dateStr, timeStr);
+
+  // Email Steveo
+  const steveoSubject = encodeURIComponent(`Appointment Request — ${booking.service?.name}`);
+  const steveoBody = encodeURIComponent(
+    `Hi Steveo,\n\nNew appointment request:\n\n${confirmText}\n\nPlease confirm by replying or texting the client.\n\nThank you!`
+  );
+  document.getElementById('emailSteveoBtn').onclick = () => {
+    window.location.href = `mailto:${STEVEO_EMAIL}?subject=${steveoSubject}&body=${steveoBody}`;
+  };
+
+  // Email Me
+  const meSubject = encodeURIComponent(`Your Steveo's Shop Booking Confirmation`);
+  const meBody = encodeURIComponent(
+    `Hi ${booking.name},\n\nYour appointment request has been submitted.\n\n${confirmText}\n\nSteveo will confirm within a few hours via text or email.\n\nSee you soon!\n— Steveo's Shop\n25 Greenbriar Dr NW, Calgary, AB T3B 6M3`
+  );
+  document.getElementById('emailMeBtn').onclick = () => {
+    if (!booking.email) { showToast('No email on file.'); return; }
+    window.location.href = `mailto:${booking.email}?subject=${meSubject}&body=${meBody}`;
+  };
+
+  // Copy to clipboard
+  document.getElementById('copyBtn').onclick = () => {
+    const text = `Steveo's Shop — Booking Confirmation\n\n${confirmText}\n\nLocation: 25 Greenbriar Dr NW, Calgary, AB T3B 6M3`;
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(text)
+        .then(() => showToast('Copied to clipboard!'))
+        .catch(() => showToast('Copy failed — try manually.'));
+    } else {
+      showToast('Clipboard not available in this browser.');
+    }
+  };
+
+  // Add to calendar
+  buildAddToCalLink(timeStr);
+
+  // Switch to panel 4
+  setModalStep(4);
 }
 
-function buildAddToCalLink() {
+function buildConfirmText(dateStr, timeStr) {
+  return [
+    `Service:  ${booking.service?.name}`,
+    `Date:     ${dateStr}`,
+    `Time:     ${timeStr}`,
+    `Duration: ${booking.service?.duration} min`,
+    `Price:    $${booking.service?.price}`,
+    `Name:     ${booking.name}`,
+    `Phone:    ${booking.phone}`,
+    `Email:    ${booking.email}`,
+    booking.notes ? `Notes:    ${booking.notes}` : '',
+  ].filter(Boolean).join('\n');
+}
+
+function buildAddToCalLink(timeStr) {
   const [slotH, slotM] = booking.time.split(':').map(Number);
   const start = new Date(booking.date); start.setHours(slotH, slotM, 0, 0);
   const end = new Date(start.getTime() + booking.service.duration * 60000);
   const fmt = d => d.toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
-  const title = encodeURIComponent(`${booking.service.name} @ Steveo's Shop`);
-  const details = encodeURIComponent(`Booked via steveosshop.ca\nService: ${booking.service.name}`);
-  const loc = encodeURIComponent('25 Greenbriar Dr NW, Calgary, AB T3B 6M3');
-  document.getElementById('addCalLink').href = `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${fmt(start)}/${fmt(end)}&details=${details}&location=${loc}`;
+  const title   = encodeURIComponent(`${booking.service.name} @ Steveo's Shop`);
+  const details = encodeURIComponent(`Booked via Steveo's Shop website.\nService: ${booking.service.name}`);
+  const loc     = encodeURIComponent('25 Greenbriar Dr NW, Calgary, AB T3B 6M3');
+  document.getElementById('addCalLink').href =
+    `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${fmt(start)}/${fmt(end)}&details=${details}&location=${loc}`;
 }
 
 function resetBooking() {
   booking = { service: null, date: null, time: null, name: '', phone: '', email: '', notes: '' };
-  document.querySelector('.booking-steps').style.display = '';
-  document.querySelectorAll('.booking-panel').forEach(p => p.style.display = '');
-  document.getElementById('bookingConfirmation').classList.remove('show');
   document.getElementById('bookingForm').reset();
-  goStep(1);
+  document.getElementById('timeSlotsWrap').style.display = 'none';
+  document.getElementById('step2Next').disabled = true;
+  renderSvcOptions();
+  setModalStep(1);
 }
 
 /* ═════════════════════════════════════════════
@@ -1576,7 +1355,7 @@ function renderIgGrid() {
 ═════════════════════════════════════════════ */
 function initScrollReveal() {
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 }
@@ -1602,14 +1381,14 @@ function initMobileMenu() {
   const hamburger = document.getElementById('hamburger');
   const menu = document.getElementById('mobileMenu');
   const close = document.getElementById('mobileMenuClose');
-  const openMenu = () => { menu.classList.add('open'); hamburger.classList.add('active'); document.body.style.overflow = 'hidden'; };
+  const openMenu  = () => { menu.classList.add('open'); hamburger.classList.add('active'); document.body.style.overflow = 'hidden'; };
   const closeMenu = () => { menu.classList.remove('open'); hamburger.classList.remove('active'); document.body.style.overflow = ''; };
   hamburger.addEventListener('click', openMenu);
   close.addEventListener('click', closeMenu);
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 }
 
-function showToast(msg, duration = 3000) {
+function showToast(msg, duration = 3200) {
   const t = document.getElementById('toast');
   t.textContent = msg; t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), duration);
