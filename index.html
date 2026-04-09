@@ -1033,8 +1033,8 @@
           <div id="hoursRows"></div>
           <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);">
             <div style="font-size:0.76rem;color:var(--text-muted);line-height:1.7;">
-              25 Greenbriar Dr NW<br>Calgary, AB
-            </div>
+              25 Greenbriar Dr NW<br>Calgary, AB T3B 6M3
+</div>
             <a href="tel:+14031234567" style="display:flex;align-items:center;gap:8px;margin-top:11px;font-size:0.82rem;color:var(--accent);font-family:'Space Grotesk',sans-serif;font-weight:600;">
               (403) 123-4567
             </a>
@@ -1065,7 +1065,7 @@
           </div>
           <div class="location-address-text">
             <strong>Steveo's Shop</strong>
-            <span>25 Greenbriar Dr NW<br>Calgary, AB T3B 6G6</span>
+            <span>25 Greenbriar Dr NW<br>Calgary, AB T3B 6M3</span>
           </div>
         </div>
 
@@ -1092,11 +1092,11 @@
             loading="lazy"
             allowfullscreen
             referrerpolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU3Luo&q=25+Greenbriar+Dr+NW+Calgary+AB&zoom=15">
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU3Luo&q=25+Greenbriar+Dr+NW+Calgary+AB+T3B+6M3&zoom=15">
           </iframe>
         </div>
         <p style="font-size:0.7rem;color:var(--text-faint);margin-top:8px;text-align:right;">
-          <a href="https://maps.google.com/?q=25+Greenbriar+Dr+NW+Calgary+AB" target="_blank" rel="noopener" style="color:var(--text-faint);">Open in Google Maps &rarr;</a>
+          <a href="https://maps.google.com/?q=25+Greenbriar+Dr+NW+Calgary+AB+T3B+6M3" target="_blank" rel="noopener" style="color:var(--text-faint);">Open in Google Maps &rarr;</a>
         </p>
       </div>
     </div>
@@ -1169,7 +1169,7 @@
 
     <div class="footer-bottom">
       <div class="footer-copy">&copy; 2026 <em>Steveo's Shop</em> &mdash; Calgary, AB</div>
-      <div style="font-size:0.7rem;color:var(--text-faint);">25 Greenbriar Dr NW, Calgary, AB</div>
+      <div style="font-size:0.7rem;color:var(--text-faint);">25 Greenbriar Dr NW, Calgary, AB T3B 6M3</div>
     </div>
   </div>
 </footer>
@@ -1406,25 +1406,47 @@ function renderTimeSlots(date) {
   const dow = date.getDay();
   const h = HOURS[dow];
   title.textContent = `Available times — ${dayNames[dow]}`;
-  const svcDur = booking.service ? booking.service.duration : 45;
-  const slots = generateSlots(h.start, h.end, svcDur);
+  // All slots are 30-min increments regardless of service duration
+  const SLOT_SIZE = 30;
+  const slots = generateSlots(h.start, h.end, SLOT_SIZE);
   const now = new Date();
-  const isToday = date.toDateString() === now.toDateString();
+  // Compare using local calendar date strings to avoid timezone issues
+  const todayStr = `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`;
+  const dateStr2 = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+  const isToday = dateStr2 === todayStr;
+  const nowMins = now.getHours() * 60 + now.getMinutes();
   grid.innerHTML = slots.map(slot => {
     const [slotH, slotM] = slot.split(':').map(Number);
-    if (isToday && (slotH < now.getHours() || (slotH === now.getHours() && slotM <= now.getMinutes()))) {
-      return `<div class="time-slot" style="opacity:0.2;cursor:default;">${formatTime(slot)}</div>`;
+    const slotMins = slotH * 60 + slotM;
+    if (isToday && slotMins <= nowMins) {
+      return `<div class="time-slot" style="opacity:0.2;cursor:default;" aria-disabled="true">${formatTime(slot)}</div>`;
     }
-    return `<div class="time-slot ${booking.time === slot ? 'selected' : ''}" onclick="selectTime('${slot}')">${formatTime(slot)}</div>`;
+    return `<div class="time-slot ${booking.time === slot ? 'selected' : ''}" data-slot="${slot}" onclick="selectTime('${slot}')">${formatTime(slot)}</div>`;
   }).join('');
+
+  // Show note if service spans multiple 30-min blocks
+  const svcDur = booking.service ? booking.service.duration : 30;
+  const blocksNeeded = Math.ceil(svcDur / SLOT_SIZE);
+  let noteEl = document.getElementById('slotNote');
+  if (!noteEl) {
+    noteEl = document.createElement('p');
+    noteEl.id = 'slotNote';
+    noteEl.style.cssText = 'font-size:0.72rem;color:var(--text-faint);margin-top:12px;line-height:1.5;';
+    wrap.appendChild(noteEl);
+  }
+  if (blocksNeeded > 1) {
+    noteEl.textContent = `This service takes ~${svcDur} min — please arrive on time so your full slot is available.`;
+  } else {
+    noteEl.textContent = '';
+  }
 }
 
-function generateSlots([startH, startM], [endH, endM], durationMin) {
+function generateSlots([startH, startM], [endH, endM], slotSize) {
   const slots = []; let cur = startH * 60 + startM; const finish = endH * 60 + endM;
-  while (cur + durationMin <= finish) {
+  while (cur + slotSize <= finish) {
     const h = Math.floor(cur / 60); const m = cur % 60;
     slots.push(`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`);
-    cur += durationMin;
+    cur += slotSize;
   }
   return slots;
 }
@@ -1437,8 +1459,8 @@ function formatTime(slot) {
 
 function selectTime(slot) {
   booking.time = slot;
-  document.querySelectorAll('.time-slot').forEach(el => {
-    el.classList.toggle('selected', el.textContent.trim() === formatTime(slot));
+  document.querySelectorAll('.time-slot[data-slot]').forEach(el => {
+    el.classList.toggle('selected', el.dataset.slot === slot);
   });
   document.getElementById('step2Next').disabled = false;
 }
@@ -1510,7 +1532,7 @@ function buildAddToCalLink() {
   const fmt = d => d.toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
   const title = encodeURIComponent(`${booking.service.name} @ Steveo's Shop`);
   const details = encodeURIComponent(`Booked via steveosshop.ca\nService: ${booking.service.name}`);
-  const loc = encodeURIComponent('25 Greenbriar Dr NW, Calgary, AB');
+  const loc = encodeURIComponent('25 Greenbriar Dr NW, Calgary, AB T3B 6M3');
   document.getElementById('addCalLink').href = `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${fmt(start)}/${fmt(end)}&details=${details}&location=${loc}`;
 }
 
