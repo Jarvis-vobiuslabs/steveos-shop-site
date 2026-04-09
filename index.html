@@ -1,0 +1,2441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steveo's Shop — Premium Barbershop | Calgary NW</title>
+  <meta name="description" content="Calgary's premier barbershop. Precision cuts, fades, hot towel shaves. Book your appointment online. Located near Calgary Farmers' Market West, NW Calgary.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Steveo's Shop — Premium Barbershop | Calgary NW">
+  <meta property="og:description" content="Precision cuts, fades & hot towel shaves. Book your seat today.">
+  <meta property="og:image" content="assets/og-image.svg">
+  <!-- TODO: Replace og:image with a 1200×630 PNG generated from AI: assets/og-image.png -->
+  <meta property="og:url" content="https://jarvis-vobiuslabs.github.io/steveos-shop-site/">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════════════════
+       DESIGN TOKENS
+    ═══════════════════════════════════════════ */
+    :root {
+      --gold:        #c9a84c;
+      --gold-light:  #e8c97e;
+      --gold-dim:    #8a6f2e;
+      --dark:        #080808;
+      --dark-2:      #111111;
+      --dark-3:      #1a1a1a;
+      --dark-4:      #222222;
+      --text:        #f0ece4;
+      --text-muted:  #8a8580;
+      --text-faint:  #555050;
+      --white:       #ffffff;
+      --radius:      8px;
+      --radius-lg:   16px;
+      --transition:  0.3s ease;
+      --shadow:      0 4px 30px rgba(0,0,0,0.5);
+      --shadow-gold: 0 0 30px rgba(201,168,76,0.15);
+    }
+
+    /* ═══════════════════════════════════════════
+       RESET & BASE
+    ═══════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; font-family: inherit; border: none; }
+    input, select, textarea { font-family: inherit; }
+
+    /* ═══════════════════════════════════════════
+       TYPOGRAPHY
+    ═══════════════════════════════════════════ */
+    .serif { font-family: 'Playfair Display', serif; }
+    h1, h2, h3, .section-title { font-family: 'Playfair Display', serif; }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 520px;
+    }
+
+    /* ═══════════════════════════════════════════
+       SCROLL REVEAL
+    ═══════════════════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ═══════════════════════════════════════════
+       LAYOUT HELPERS
+    ═══════════════════════════════════════════ */
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    section { padding: 100px 0; }
+
+    /* Divider */
+    .gold-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      margin: 1.25rem 0 2rem;
+    }
+    .gold-line.center { margin-left: auto; margin-right: auto; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: all var(--transition);
+      cursor: pointer;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--dark);
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(201,168,76,0.35);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--gold);
+      color: var(--gold);
+    }
+    .btn-outline:hover {
+      background: rgba(201,168,76,0.08);
+      transform: translateY(-2px);
+    }
+
+    /* ═══════════════════════════════════════════
+       NAVIGATION
+    ═══════════════════════════════════════════ */
+    #nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      transition: all 0.4s ease;
+    }
+    #nav.scrolled {
+      background: rgba(8,8,8,0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+    .nav-logo span {
+      color: var(--text);
+      font-weight: 400;
+      font-style: italic;
+      font-size: 0.8em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-book-btn {
+      padding: 9px 20px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--dark);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all var(--transition);
+    }
+    .nav-book-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 15px rgba(201,168,76,0.4);
+    }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 2px;
+      transition: all var(--transition);
+    }
+    .nav-hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.active span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(8,8,8,0.98);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+    }
+    .nav-mobile-menu.open { display: flex; }
+    .nav-mobile-menu a {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--text);
+      transition: color var(--transition);
+    }
+    .nav-mobile-menu a:hover { color: var(--gold); }
+    .nav-mobile-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: none;
+      border: none;
+      color: var(--gold);
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-book-btn { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+
+    /* ═══════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════ */
+    #hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    /* ─── HERO BACKGROUND ───────────────────────
+       REPLACE: Set background-image: url('assets/hero-bg.jpg') below
+       to swap in your AI-generated single-seat modern barber studio image.
+       Recommended: 1920×1080+ JPG, dark/moody lighting, compressed ≤400KB.
+    ──────────────────────────────────────────── */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-color: #0d0b07;
+      /* REPLACE_ME: background-image: url('assets/hero-bg.jpg'); */
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+
+      /* Fallback CSS art — remove once real image is set */
+      background-image:
+        radial-gradient(ellipse 80% 60% at 70% 40%, rgba(201,168,76,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 80% at 30% 60%, rgba(139,90,0,0.05) 0%, transparent 60%),
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 40px,
+          rgba(201,168,76,0.015) 40px,
+          rgba(201,168,76,0.015) 41px
+        );
+    }
+
+    /* Cinematic dark gradient overlay */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to right, rgba(8,8,8,0.92) 0%, rgba(8,8,8,0.6) 55%, rgba(8,8,8,0.3) 100%),
+        linear-gradient(to top, rgba(8,8,8,0.8) 0%, transparent 50%);
+    }
+
+    /* Subtle animated noise texture */
+    .hero-noise {
+      position: absolute;
+      inset: 0;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      padding: 120px 24px 120px;
+      margin-left: max(24px, calc(50vw - 550px));
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 28px;
+      animation: fadeSlideDown 0.8s ease forwards;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.0;
+      color: var(--text);
+      margin-bottom: 0.3em;
+      animation: fadeSlideUp 0.9s ease 0.1s both;
+    }
+    .hero-title .accent { color: var(--gold); font-style: italic; }
+
+    .hero-tagline {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      font-weight: 300;
+      line-height: 1.6;
+      animation: fadeSlideUp 0.9s ease 0.2s both;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 2.5rem;
+      animation: fadeSlideUp 0.9s ease 0.3s both;
+    }
+    .hero-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+    .hero-stat-divider {
+      width: 1px;
+      background: rgba(201,168,76,0.2);
+      align-self: stretch;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      animation: fadeSlideUp 0.9s ease 0.4s both;
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.45;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      z-index: 1;
+      animation: fadeSlideUp 1s ease 1s both;
+    }
+    .hero-scroll-hint::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollLine 1.8s ease infinite;
+    }
+    @keyframes scrollLine {
+      0% { opacity: 0; transform: scaleY(0); transform-origin: top; }
+      50% { opacity: 1; }
+      100% { opacity: 0; transform: scaleY(1); transform-origin: top; }
+    }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeSlideDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ═══════════════════════════════════════════
+       SERVICES
+    ═══════════════════════════════════════════ */
+    #services {
+      background: var(--dark-2);
+      position: relative;
+      overflow: hidden;
+    }
+    #services::before {
+      content: 'SERVICES';
+      position: absolute;
+      top: 40px;
+      right: -30px;
+      font-family: 'Playfair Display', serif;
+      font-size: 8rem;
+      font-weight: 900;
+      color: rgba(201,168,76,0.03);
+      letter-spacing: 0.2em;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .services-header { text-align: center; margin-bottom: 60px; }
+    .services-header .section-subtitle { margin: 0 auto; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2px;
+    }
+
+    .service-card {
+      background: var(--dark-3);
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      transition: all var(--transition);
+      cursor: default;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .service-card:hover { background: #202020; }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius);
+      background: rgba(201,168,76,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      font-size: 1.3rem;
+    }
+    .service-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .service-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .service-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .service-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .service-price sup {
+      font-size: 0.65em;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      vertical-align: super;
+    }
+    .service-duration {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.78rem;
+      color: var(--text-faint);
+      letter-spacing: 0.05em;
+    }
+    .service-duration svg { opacity: 0.6; }
+    .service-book-btn {
+      display: none; /* shown on hover via JS */
+      padding: 8px 18px;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      border-radius: var(--radius);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: all var(--transition);
+    }
+    .service-card:hover .service-book-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .service-book-btn:hover {
+      background: var(--gold);
+      color: var(--dark);
+    }
+
+    .services-note {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.82rem;
+      color: var(--text-faint);
+      font-style: italic;
+    }
+
+    /* ═══════════════════════════════════════════
+       BOOKING
+    ═══════════════════════════════════════════ */
+    #booking {
+      background: var(--dark);
+      position: relative;
+    }
+    #booking::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+    }
+
+    .booking-header { margin-bottom: 48px; }
+
+    .booking-widget {
+      background: var(--dark-2);
+      border: 1px solid rgba(201,168,76,0.1);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      /* TODO: Wire Stripe deposit here — add data-stripe-key attribute */
+      /* TODO: Wire email automation — add data-webhook-url attribute */
+    }
+
+    /* Steps indicator */
+    .booking-steps {
+      display: flex;
+      background: var(--dark-3);
+      border-bottom: 1px solid rgba(201,168,76,0.08);
+    }
+    .booking-step {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 20px;
+      position: relative;
+      opacity: 0.45;
+      transition: opacity var(--transition);
+    }
+    .booking-step.active { opacity: 1; }
+    .booking-step.done { opacity: 0.7; }
+    .booking-step.done .step-num { background: var(--gold); color: var(--dark); }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .booking-step.active .step-num { background: var(--gold); color: var(--dark); }
+    .step-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .booking-step.active .step-label { color: var(--gold); }
+    @media (max-width: 600px) {
+      .step-label { display: none; }
+      .booking-step { justify-content: center; padding: 14px; }
+    }
+
+    /* Booking body panels */
+    .booking-panel { display: none; padding: 36px; }
+    .booking-panel.active { display: block; }
+
+    /* Service selector */
+    .svc-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .svc-option {
+      border: 1.5px solid rgba(201,168,76,0.15);
+      border-radius: var(--radius);
+      padding: 16px;
+      cursor: pointer;
+      transition: all var(--transition);
+      background: var(--dark-3);
+    }
+    .svc-option:hover { border-color: var(--gold); background: var(--dark-4); }
+    .svc-option.selected {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.07);
+    }
+    .svc-option-icon { font-size: 1.4rem; margin-bottom: 8px; }
+    .svc-option-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .svc-option-price {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: 1rem;
+    }
+    .svc-option-dur {
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      margin-top: 2px;
+    }
+
+    /* Calendar */
+    .calendar-wrap { max-width: 380px; }
+    .cal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .cal-month-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+    .cal-nav-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--dark-4);
+      border: 1px solid rgba(201,168,76,0.2);
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+    }
+    .cal-nav-btn:hover { background: rgba(201,168,76,0.1); }
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+    }
+    .cal-day-name {
+      text-align: center;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      padding: 4px 0 8px;
+    }
+    .cal-day {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius);
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all var(--transition);
+      font-weight: 500;
+      position: relative;
+    }
+    .cal-day:hover:not(.disabled):not(.empty) {
+      background: rgba(201,168,76,0.12);
+      color: var(--gold);
+    }
+    .cal-day.selected {
+      background: var(--gold);
+      color: var(--dark);
+      font-weight: 700;
+    }
+    .cal-day.today:not(.selected) {
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .cal-day.today:not(.selected)::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+    .cal-day.disabled {
+      color: var(--text-faint);
+      cursor: default;
+      opacity: 0.35;
+    }
+    .cal-day.empty { cursor: default; }
+    .cal-day.closed-label {
+      font-size: 0.6rem;
+      color: var(--text-faint);
+      cursor: default;
+    }
+
+    /* Time slots */
+    .time-slots-wrap { margin-top: 32px; }
+    .time-slots-title {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .time-slots-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .time-slot {
+      padding: 8px 14px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(201,168,76,0.2);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all var(--transition);
+      background: var(--dark-3);
+    }
+    .time-slot:hover { border-color: var(--gold); color: var(--gold); }
+    .time-slot.selected {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--dark);
+      font-weight: 700;
+    }
+
+    /* Booking form */
+    .booking-form-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: rgba(201,168,76,0.07);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: var(--radius);
+      margin-bottom: 28px;
+    }
+    .booking-summary-icon { font-size: 1.5rem; }
+    .booking-summary-text { font-size: 0.85rem; color: var(--text-muted); }
+    .booking-summary-text strong { color: var(--gold); font-weight: 600; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .form-row.single { grid-template-columns: 1fr; }
+    @media (max-width: 540px) { .form-row { grid-template-columns: 1fr; } }
+
+    .form-group label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 7px;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--dark-3);
+      border: 1.5px solid rgba(201,168,76,0.15);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-size: 0.95rem;
+      transition: border-color var(--transition);
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--gold);
+    }
+    .form-group input::placeholder { color: var(--text-faint); }
+
+    .form-note {
+      font-size: 0.78rem;
+      color: var(--text-faint);
+      margin: 14px 0 22px;
+      line-height: 1.5;
+    }
+    .form-note a { color: var(--gold); text-decoration: underline; text-underline-offset: 2px; }
+
+    .booking-submit-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn-book-submit {
+      flex: 1;
+      min-width: 200px;
+      padding: 15px 28px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--dark);
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: none;
+      transition: all var(--transition);
+    }
+    .btn-book-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(201,168,76,0.35);
+    }
+
+    /* Confirmation */
+    .booking-confirmation {
+      display: none;
+      text-align: center;
+      padding: 60px 36px;
+    }
+    .booking-confirmation.show { display: block; }
+    .confirm-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(201,168,76,0.1);
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 24px;
+    }
+    .confirm-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .confirm-sub {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      max-width: 420px;
+      margin: 0 auto 24px;
+    }
+    .confirm-details {
+      background: rgba(201,168,76,0.05);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin: 0 auto 24px;
+      max-width: 380px;
+      text-align: left;
+    }
+    .confirm-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      font-size: 0.88rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .confirm-row:last-child { border-bottom: none; }
+    .confirm-row span:first-child { color: var(--text-muted); }
+    .confirm-row span:last-child { color: var(--text); font-weight: 500; }
+
+    .panel-nav { display: flex; gap: 12px; margin-top: 24px; }
+    .panel-back {
+      padding: 11px 22px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      transition: all var(--transition);
+    }
+    .panel-back:hover { border-color: var(--gold); color: var(--gold); }
+    .panel-next {
+      padding: 11px 28px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--dark);
+      border-radius: var(--radius);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border: none;
+      transition: all var(--transition);
+    }
+    .panel-next:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(201,168,76,0.35); }
+    .panel-next:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    /* Hours sidebar */
+    .booking-layout {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 32px;
+    }
+    @media (max-width: 900px) {
+      .booking-layout { grid-template-columns: 1fr; }
+    }
+    .hours-card {
+      background: var(--dark-3);
+      border: 1px solid rgba(201,168,76,0.1);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      align-self: start;
+      position: sticky;
+      top: 90px;
+    }
+    .hours-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      color: var(--gold);
+    }
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      font-size: 0.85rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-day { color: var(--text-muted); font-weight: 500; }
+    .hours-time { color: var(--text); text-align: right; }
+    .hours-closed { color: var(--text-faint); font-style: italic; }
+    .hours-today .hours-day { color: var(--gold); }
+    .hours-today .hours-time { color: var(--gold); font-weight: 600; }
+
+    /* ═══════════════════════════════════════════
+       LOCATION
+    ═══════════════════════════════════════════ */
+    #location {
+      background: var(--dark-2);
+      overflow: hidden;
+    }
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .location-grid { grid-template-columns: 1fr; }
+    }
+    .location-info { }
+    .location-address {
+      display: flex;
+      gap: 14px;
+      margin: 28px 0;
+      padding: 20px;
+      background: var(--dark-3);
+      border-radius: var(--radius);
+      border: 1px solid rgba(201,168,76,0.1);
+    }
+    .location-pin {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .location-address-text strong {
+      display: block;
+      color: var(--text);
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .location-address-text span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .location-transport {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .transport-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+    .transport-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius);
+      background: rgba(201,168,76,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .map-wrap {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(201,168,76,0.1);
+      box-shadow: var(--shadow);
+      height: 400px;
+    }
+    .map-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      filter: invert(0.92) hue-rotate(180deg) saturate(0.8);
+    }
+    @media (prefers-color-scheme: light) {
+      .map-wrap iframe { filter: none; }
+    }
+
+    /* ═══════════════════════════════════════════
+       INSTAGRAM
+    ═══════════════════════════════════════════ */
+    #instagram {
+      background: var(--dark);
+      text-align: center;
+    }
+    .ig-header { margin-bottom: 44px; }
+
+    /* Placeholder grid */
+    .ig-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+      margin-bottom: 36px;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    @media (max-width: 480px) {
+      .ig-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .ig-placeholder {
+      aspect-ratio: 1;
+      background: var(--dark-3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+      transition: all var(--transition);
+    }
+    .ig-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 10px,
+          rgba(201,168,76,0.015) 10px,
+          rgba(201,168,76,0.015) 11px
+        );
+    }
+    .ig-placeholder:hover { background: var(--dark-4); }
+    .ig-placeholder .ig-icon {
+      font-size: 1.6rem;
+      opacity: 0.25;
+      position: relative;
+      z-index: 1;
+    }
+    .ig-placeholder .ig-label {
+      font-size: 0.7rem;
+      color: var(--text-faint);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Real embeds from data array */
+    .ig-embed-item {
+      aspect-ratio: 1;
+      overflow: hidden;
+    }
+    .ig-embed-item iframe, .ig-embed-item blockquote {
+      width: 100% !important;
+      min-width: 0 !important;
+    }
+
+    .ig-cta-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .ig-handle {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+    .ig-follow-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+      color: var(--white);
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: all var(--transition);
+    }
+    .ig-follow-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(131,58,180,0.35);
+    }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════ */
+    footer {
+      background: var(--dark-2);
+      border-top: 1px solid rgba(201,168,76,0.08);
+      padding: 60px 0 40px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    @media (max-width: 768px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+    }
+    .footer-brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .footer-brand-tagline {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 280px;
+      margin-bottom: 24px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 12px;
+    }
+    .footer-social a {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(201,168,76,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: all var(--transition);
+    }
+    .footer-social a:hover {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.08);
+    }
+    .footer-col-title {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-links a {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-bottom {
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--text-faint);
+    }
+    .footer-copy span { color: var(--gold); }
+
+    /* ═══════════════════════════════════════════
+       STICKY MOBILE CTA
+    ═══════════════════════════════════════════ */
+    #sticky-cta {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 900;
+      padding: 12px 16px max(12px, env(safe-area-inset-bottom));
+      background: rgba(8,8,8,0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(201,168,76,0.15);
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #sticky-cta.visible { transform: translateY(0); }
+    .sticky-cta-inner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .sticky-cta-text {
+      flex: 1;
+      min-width: 0;
+    }
+    .sticky-cta-text strong {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .sticky-cta-text span {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .sticky-cta-btn {
+      padding: 12px 22px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--dark);
+      border-radius: var(--radius);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
+      border: none;
+    }
+
+    @media (max-width: 768px) {
+      #sticky-cta { display: block; }
+      section { padding: 70px 0; }
+      .hero-content { padding-top: 100px; padding-bottom: 80px; }
+      .booking-panel { padding: 20px; }
+    }
+
+    /* ═══════════════════════════════════════════
+       MISC
+    ═══════════════════════════════════════════ */
+    .toast {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      z-index: 9999;
+      padding: 14px 20px;
+      background: var(--dark-3);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: var(--radius);
+      font-size: 0.85rem;
+      color: var(--text);
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.3s ease;
+      pointer-events: none;
+      max-width: 280px;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+  </style>
+</head>
+
+<body>
+
+<!-- ══════════════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════════════ -->
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">STEVEO'S <span>Shop</span></a>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#booking">Book</a></li>
+        <li><a href="#location">Find Us</a></li>
+        <li><a href="#instagram">Gallery</a></li>
+      </ul>
+      <a href="#booking" class="nav-book-btn">Book Now</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="nav-mobile-menu" id="mobileMenu">
+  <button class="nav-mobile-close" id="mobileMenuClose" aria-label="Close">&times;</button>
+  <a href="#services" class="mobile-nav-link">Services</a>
+  <a href="#booking" class="mobile-nav-link">Book Now</a>
+  <a href="#location" class="mobile-nav-link">Find Us</a>
+  <a href="#instagram" class="mobile-nav-link">Gallery</a>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-noise"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">Calgary NW &nbsp;·&nbsp; Est. Right Here</div>
+
+    <h1 class="hero-title">
+      The Cut<br>
+      You <span class="accent">Deserve.</span>
+    </h1>
+
+    <p class="hero-tagline">
+      Premium men's grooming in Calgary NW. Precision fades,<br>
+      classic cuts & hot towel shaves — every single time.
+    </p>
+
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">7+</div>
+        <div class="hero-stat-label">Years Cutting</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div>
+        <div class="hero-stat-num">5★</div>
+        <div class="hero-stat-label">Client Rating</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div>
+        <div class="hero-stat-num">6</div>
+        <div class="hero-stat-label">Days a Week</div>
+      </div>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="#booking" class="btn btn-gold">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Book Your Seat
+      </a>
+      <a href="#services" class="btn btn-outline">View Services</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint">Scroll</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     SERVICES
+══════════════════════════════════════════════ -->
+<section id="services">
+  <div class="container">
+    <div class="services-header reveal">
+      <span class="section-label">What We Do</span>
+      <h2 class="section-title">Services & Pricing</h2>
+      <div class="gold-line center"></div>
+      <p class="section-subtitle">
+        Every service is tailored to you. Consistent cuts, clean finishes,
+        and attention to detail — from your first visit to your hundredth.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <!-- Service cards injected by JS -->
+    </div>
+
+    <p class="services-note reveal reveal-delay-5">
+      All prices reflect Calgary market rates and include a finish + style.
+      Exact pricing confirmed at consultation for specialty requests.
+    </p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     BOOKING
+══════════════════════════════════════════════ -->
+<section id="booking">
+  <div class="container">
+    <div class="booking-layout">
+      <div>
+        <div class="booking-header reveal">
+          <span class="section-label">Reserve Your Spot</span>
+          <h2 class="section-title">Book an Appointment</h2>
+          <div class="gold-line"></div>
+          <p class="section-subtitle">
+            Choose your service, pick a time that works for you,
+            and we'll hold your seat. No walk-in wait.
+          </p>
+        </div>
+
+        <!-- Booking Widget -->
+        <div class="booking-widget reveal reveal-delay-1" id="bookingWidget">
+
+          <!-- Steps indicator -->
+          <div class="booking-steps">
+            <div class="booking-step active" data-step="1">
+              <div class="step-num">1</div>
+              <div class="step-label">Service</div>
+            </div>
+            <div class="booking-step" data-step="2">
+              <div class="step-num">2</div>
+              <div class="step-label">Date &amp; Time</div>
+            </div>
+            <div class="booking-step" data-step="3">
+              <div class="step-num">3</div>
+              <div class="step-label">Your Details</div>
+            </div>
+          </div>
+
+          <!-- Panel 1: Service -->
+          <div class="booking-panel active" id="panel1">
+            <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:18px;">Select the service you'd like:</p>
+            <div class="svc-options" id="svcOptions"></div>
+            <div class="panel-nav">
+              <button class="panel-next" id="step1Next" disabled onclick="goStep(2)">
+                Continue &rarr;
+              </button>
+            </div>
+          </div>
+
+          <!-- Panel 2: Date & Time -->
+          <div class="booking-panel" id="panel2">
+            <div class="calendar-wrap">
+              <div class="cal-header">
+                <button class="cal-nav-btn" id="calPrev" aria-label="Previous month">&#8592;</button>
+                <span class="cal-month-label" id="calMonthLabel"></span>
+                <button class="cal-nav-btn" id="calNext" aria-label="Next month">&#8594;</button>
+              </div>
+              <div class="cal-grid" id="calGrid"></div>
+            </div>
+            <div class="time-slots-wrap" id="timeSlotsWrap" style="display:none;">
+              <div class="time-slots-title" id="timeSlotsTitle"></div>
+              <div class="time-slots-grid" id="timeSlotsGrid"></div>
+            </div>
+            <div class="panel-nav" style="margin-top:24px;">
+              <button class="panel-back" onclick="goStep(1)">&larr; Back</button>
+              <button class="panel-next" id="step2Next" disabled onclick="goStep(3)">
+                Continue &rarr;
+              </button>
+            </div>
+          </div>
+
+          <!-- Panel 3: Details -->
+          <div class="booking-panel" id="panel3">
+            <div class="booking-form-header" id="bookingSummaryBar">
+              <span class="booking-summary-icon">✂️</span>
+              <div class="booking-summary-text" id="summaryText"></div>
+            </div>
+
+            <form id="bookingForm" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="guestName">Full Name *</label>
+                  <input type="text" id="guestName" name="name" placeholder="Your name" required autocomplete="name">
+                </div>
+                <div class="form-group">
+                  <label for="guestPhone">Phone *</label>
+                  <input type="tel" id="guestPhone" name="phone" placeholder="(403) 555-0100" required autocomplete="tel">
+                </div>
+              </div>
+              <div class="form-row single">
+                <div class="form-group">
+                  <label for="guestEmail">Email *</label>
+                  <input type="email" id="guestEmail" name="email" placeholder="you@example.com" required autocomplete="email">
+                </div>
+              </div>
+              <div class="form-row single">
+                <div class="form-group">
+                  <label for="guestNotes">Notes (optional)</label>
+                  <input type="text" id="guestNotes" name="notes" placeholder="Any preferences, first-time visit, etc.">
+                </div>
+              </div>
+
+              <p class="form-note">
+                By booking you confirm you're cool with a quick reminder text.
+                <!-- TODO: Add Stripe deposit link here when ready -->
+                <!-- TODO: Wire confirmation email via webhook at data-webhook-url -->
+              </p>
+
+              <div class="booking-submit-row">
+                <button type="submit" class="btn-book-submit">
+                  ✔ Confirm Appointment
+                </button>
+              </div>
+              <p class="form-note" style="margin-top:12px;">
+                Or <a href="#" id="mailtoFallback">send request by email</a> if the form isn't working.
+              </p>
+            </form>
+            <div class="panel-nav" style="margin-top:4px;">
+              <button class="panel-back" onclick="goStep(2)">&larr; Back</button>
+            </div>
+          </div>
+
+          <!-- Confirmation -->
+          <div class="booking-confirmation" id="bookingConfirmation">
+            <div class="confirm-icon">✓</div>
+            <div class="confirm-title">You're Booked!</div>
+            <p class="confirm-sub">
+              Your appointment request has been saved. Steveo will confirm within a few hours via text or email.
+            </p>
+            <div class="confirm-details" id="confirmDetails"></div>
+            <a href="#" id="addCalLink" class="btn btn-outline" style="display:inline-flex;margin-bottom:16px;">
+              📅 Add to Calendar
+            </a>
+            <br>
+            <button onclick="resetBooking()" class="panel-back">Book Another</button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Hours sidebar -->
+      <div>
+        <div class="hours-card reveal reveal-delay-2" id="hoursCard">
+          <div class="hours-title">⏱ Hours</div>
+          <div id="hoursRows"></div>
+          <div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.05);">
+            <div style="font-size:0.78rem;color:var(--text-muted);line-height:1.6;">
+              📍 25 Greenbriar Dr NW<br>Calgary, AB
+            </div>
+            <a href="tel:+14031234567" style="display:flex;align-items:center;gap:8px;margin-top:14px;font-size:0.85rem;color:var(--gold);">
+              <!-- TODO: Replace with Steveo's actual phone number -->
+              📞 (403) 123-4567
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     LOCATION
+══════════════════════════════════════════════ -->
+<section id="location">
+  <div class="container">
+    <div class="location-grid">
+      <div class="reveal">
+        <span class="section-label">Find Us</span>
+        <h2 class="section-title">In the Heart<br>of Calgary NW</h2>
+        <div class="gold-line"></div>
+        <p class="section-subtitle">
+          Conveniently located near the Calgary Farmers' Market West —
+          easy access from Tuscany, Kincora, Nolan Hill, and surrounding communities.
+        </p>
+
+        <div class="location-address">
+          <div class="location-pin">📍</div>
+          <div class="location-address-text">
+            <strong>Steveo's Shop</strong>
+            <span>25 Greenbriar Dr NW<br>Calgary, AB T3B 6G6</span>
+          </div>
+        </div>
+
+        <div class="location-transport">
+          <div class="transport-item">
+            <div class="transport-icon">🚗</div>
+            <span>Ample free parking on-site and street parking available</span>
+          </div>
+          <div class="transport-item">
+            <div class="transport-icon">🚌</div>
+            <span>Accessible via Calgary Transit — nearby bus routes on Tuscany Blvd</span>
+          </div>
+          <div class="transport-item">
+            <div class="transport-icon">🏪</div>
+            <span>Steps from Calgary Farmers' Market West — grab groceries after your cut</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2">
+        <div class="map-wrap">
+          <iframe
+            title="Steveo's Shop location map"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU3Luo&q=25+Greenbriar+Dr+NW+Calgary+AB&zoom=15">
+          </iframe>
+          <!-- Fallback if API key invalid (replace key above with a real one) -->
+        </div>
+        <p style="font-size:0.75rem;color:var(--text-faint);margin-top:10px;text-align:right;">
+          <!-- TODO: Replace Maps embed API key with production key -->
+          <a href="https://maps.google.com/?q=25+Greenbriar+Dr+NW+Calgary+AB" target="_blank" rel="noopener" style="color:var(--gold-dim);">Open in Google Maps ↗</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     INSTAGRAM
+══════════════════════════════════════════════ -->
+<section id="instagram">
+  <div class="container">
+    <div class="ig-header reveal">
+      <span class="section-label">Fresh Cuts Gallery</span>
+      <h2 class="section-title">Follow the Work</h2>
+      <div class="gold-line center"></div>
+    </div>
+
+    <!-- Dynamic grid: shows real embeds if IG_POSTS array is filled,
+         otherwise shows placeholder tiles -->
+    <div class="ig-grid reveal reveal-delay-1" id="igGrid"></div>
+
+    <div class="ig-cta-wrap reveal reveal-delay-2">
+      <p class="ig-handle">@steveo.barber</p>
+      <a href="https://www.instagram.com/steveo.barber"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="ig-follow-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        Follow @steveo.barber
+      </a>
+      <p style="font-size:0.78rem;color:var(--text-faint);max-width:340px;text-align:center;line-height:1.6;">
+        For the latest cuts, style inspo & availability updates —<br>follow us on Instagram.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">STEVEO'S</div>
+        <p class="footer-brand-tagline">
+          Premium men's barbershop in Calgary NW. Your look is our craft —
+          walk in sharp, leave sharper.
+        </p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/steveo.barber" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="tel:+14031234567" aria-label="Call us">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.63 19.79 19.79 0 01.09 2.18 2 2 0 012.06.02h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.16 6.16l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0121.98 15z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Menu</div>
+        <ul class="footer-links">
+          <li><a href="#services">Services & Pricing</a></li>
+          <li><a href="#booking">Book Appointment</a></li>
+          <li><a href="#location">Location</a></li>
+          <li><a href="#instagram">Gallery</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Hours</div>
+        <ul class="footer-links" style="gap:6px;">
+          <li style="font-size:0.82rem;color:var(--text-muted);">Tue–Sat: 10am – 7pm</li>
+          <li style="font-size:0.82rem;color:var(--text-muted);">Sunday: 11am – 5pm</li>
+          <li style="font-size:0.82rem;color:var(--text-faint);">Monday: Closed</li>
+        </ul>
+        <div style="margin-top:16px;">
+          <a href="#booking" class="btn btn-gold" style="padding:10px 20px;font-size:0.8rem;">
+            Book Now
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">
+        &copy; 2026 <span>Steveo's Shop</span> &mdash; Calgary, AB. All rights reserved.
+      </div>
+      <div style="font-size:0.75rem;color:var(--text-faint);">
+        25 Greenbriar Dr NW, Calgary, AB
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- Sticky Bottom CTA (mobile) -->
+<div id="sticky-cta">
+  <div class="sticky-cta-inner">
+    <div class="sticky-cta-text">
+      <strong>Steveo's Shop</strong>
+      <span>Calgary NW — Tue-Sat 10–7, Sun 11–5</span>
+    </div>
+    <button class="sticky-cta-btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">
+      Book Now
+    </button>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+
+<!-- ══════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════ -->
+<script>
+/* ─────────────────────────────────────────────
+   SERVICES DATA
+   Calgary industry-standard pricing (2025-26)
+───────────────────────────────────────────── */
+const SERVICES = [
+  {
+    id: 'classic-cut',
+    icon: '✂️',
+    name: 'Classic Men\'s Cut',
+    desc: 'Scissor or clipper cut, washed, styled and finished. Great all-around reset.',
+    price: 45,
+    duration: 45,
+  },
+  {
+    id: 'skin-fade',
+    icon: '💈',
+    name: 'Skin Fade',
+    desc: 'High, mid or low skin fade blended to perfection. The signature Steveo cut.',
+    price: 50,
+    duration: 50,
+  },
+  {
+    id: 'textured-crop',
+    icon: '🔥',
+    name: 'Textured Crop & Style',
+    desc: 'Drop fade with textured top. Effortless and modern every time.',
+    price: 50,
+    duration: 50,
+  },
+  {
+    id: 'beard-shape',
+    icon: '🪒',
+    name: 'Beard Shape & Line-up',
+    desc: 'Crisp lines, shaped contours and a clean edge to frame your face.',
+    price: 30,
+    duration: 30,
+  },
+  {
+    id: 'hot-towel-shave',
+    icon: '🫧',
+    name: 'Hot Towel Shave',
+    desc: 'Traditional straight razor shave with hot towel prep. The ultimate luxury.',
+    price: 55,
+    duration: 45,
+  },
+  {
+    id: 'cut-beard-combo',
+    icon: '⭐',
+    name: 'Cut + Beard Combo',
+    desc: 'Full haircut paired with a beard shape — the complete look, all at once.',
+    price: 65,
+    duration: 75,
+  },
+  {
+    id: 'kids-cut',
+    icon: '👦',
+    name: 'Kids Cut (12 & Under)',
+    desc: 'Patient, fun cuts for the young ones. Clean finish, happy kids.',
+    price: 30,
+    duration: 30,
+  },
+];
+
+/* ─────────────────────────────────────────────
+   HOURS CONFIG
+   0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
+───────────────────────────────────────────── */
+const HOURS = {
+  0: { label: 'Sunday',    open: true,  start: [11, 0], end: [17, 0] },
+  1: { label: 'Monday',    open: false },
+  2: { label: 'Tuesday',   open: true,  start: [10, 0], end: [19, 0] },
+  3: { label: 'Wednesday', open: true,  start: [10, 0], end: [19, 0] },
+  4: { label: 'Thursday',  open: true,  start: [10, 0], end: [19, 0] },
+  5: { label: 'Friday',    open: true,  start: [10, 0], end: [19, 0] },
+  6: { label: 'Saturday',  open: true,  start: [10, 0], end: [19, 0] },
+};
+
+/* ─────────────────────────────────────────────
+   INSTAGRAM POSTS
+   Add Instagram post URLs here to show real embeds.
+   Format: 'https://www.instagram.com/p/POST_ID/'
+   Leave empty to show placeholder tiles.
+───────────────────────────────────────────── */
+const IG_POSTS = [
+  // 'https://www.instagram.com/p/EXAMPLE1/',
+  // 'https://www.instagram.com/p/EXAMPLE2/',
+  // 'https://www.instagram.com/p/EXAMPLE3/',
+  // 'https://www.instagram.com/p/EXAMPLE4/',
+  // 'https://www.instagram.com/p/EXAMPLE5/',
+  // 'https://www.instagram.com/p/EXAMPLE6/',
+];
+
+const IG_GRID_COUNT = 6; // placeholder tiles to show when IG_POSTS is empty
+
+/* ─────────────────────────────────────────────
+   BOOKING STATE
+───────────────────────────────────────────── */
+let booking = {
+  service: null,
+  date: null,    // Date object
+  time: null,    // 'HH:MM' string
+  name: '',
+  phone: '',
+  email: '',
+  notes: '',
+};
+
+/* ─────────────────────────────────────────────
+   CALENDAR STATE
+───────────────────────────────────────────── */
+let calYear, calMonth;
+
+/* ═════════════════════════════════════════════
+   INIT
+═════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  renderServices();
+  renderHours();
+  renderIgGrid();
+  initCalendar();
+  initScrollReveal();
+  initNav();
+  initStickyCta();
+  initMobileMenu();
+});
+
+/* ═════════════════════════════════════════════
+   RENDER SERVICES
+═════════════════════════════════════════════ */
+function renderServices() {
+  const grid = document.querySelector('.services-grid');
+  grid.innerHTML = SERVICES.map((svc, i) => `
+    <div class="service-card reveal reveal-delay-${(i % 4) + 1}">
+      <div class="service-icon">${svc.icon}</div>
+      <div class="service-name">${svc.name}</div>
+      <div class="service-desc">${svc.desc}</div>
+      <div class="service-meta">
+        <div>
+          <div class="service-price"><sup>$</sup>${svc.price}</div>
+          <div class="service-duration">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            ${svc.duration} min
+          </div>
+        </div>
+        <button class="service-book-btn" onclick="quickBook('${svc.id}')">
+          Book
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function quickBook(serviceId) {
+  booking.service = SERVICES.find(s => s.id === serviceId);
+  document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => goStep(2), 600);
+  // Highlight selected service in panel 1
+  document.querySelectorAll('.svc-option').forEach(el => {
+    el.classList.toggle('selected', el.dataset.id === serviceId);
+  });
+}
+
+/* ═════════════════════════════════════════════
+   RENDER HOURS SIDEBAR
+═════════════════════════════════════════════ */
+function renderHours() {
+  const today = new Date().getDay();
+  const container = document.getElementById('hoursRows');
+  const order = [1, 2, 3, 4, 5, 6, 0]; // Mon-Sun
+  container.innerHTML = order.map(day => {
+    const h = HOURS[day];
+    const isToday = day === today;
+    const timeStr = h.open
+      ? `${fmt12(h.start)} – ${fmt12(h.end)}`
+      : '<span class="hours-closed">Closed</span>';
+    return `
+      <div class="hours-row ${isToday ? 'hours-today' : ''}">
+        <span class="hours-day">${h.label.slice(0, 3)}</span>
+        <span class="hours-time">${timeStr}</span>
+      </div>`;
+  }).join('');
+}
+
+function fmt12([h, m]) {
+  const ampm = h >= 12 ? 'pm' : 'am';
+  const h12 = h % 12 || 12;
+  return m ? `${h12}:${String(m).padStart(2, '0')}${ampm}` : `${h12}${ampm}`;
+}
+
+/* ═════════════════════════════════════════════
+   BOOKING WIDGET — STEP NAV
+═════════════════════════════════════════════ */
+function goStep(n) {
+  // Validate before advancing
+  if (n === 2 && !booking.service) return;
+  if (n === 3 && (!booking.date || !booking.time)) return;
+
+  document.querySelectorAll('.booking-panel').forEach((p, i) => {
+    p.classList.toggle('active', i + 1 === n);
+  });
+  document.querySelectorAll('.booking-step').forEach((s, i) => {
+    const stepN = i + 1;
+    s.classList.toggle('active', stepN === n);
+    s.classList.toggle('done', stepN < n);
+  });
+
+  if (n === 2) {
+    renderSvcOptions();
+    buildCalendar();
+  }
+  if (n === 3) {
+    updateSummaryBar();
+  }
+}
+
+/* ═════════════════════════════════════════════
+   PANEL 1 — SERVICE OPTIONS
+═════════════════════════════════════════════ */
+function renderSvcOptions() {
+  const container = document.getElementById('svcOptions');
+  container.innerHTML = SERVICES.map(svc => `
+    <div class="svc-option ${booking.service?.id === svc.id ? 'selected' : ''}"
+         data-id="${svc.id}"
+         onclick="selectService('${svc.id}')">
+      <div class="svc-option-icon">${svc.icon}</div>
+      <div class="svc-option-name">${svc.name}</div>
+      <div class="svc-option-price">$${svc.price}</div>
+      <div class="svc-option-dur">${svc.duration} min</div>
+    </div>
+  `).join('');
+  document.getElementById('step1Next').disabled = !booking.service;
+}
+
+function selectService(id) {
+  booking.service = SERVICES.find(s => s.id === id);
+  document.querySelectorAll('.svc-option').forEach(el => {
+    el.classList.toggle('selected', el.dataset.id === id);
+  });
+  document.getElementById('step1Next').disabled = false;
+}
+
+/* ═════════════════════════════════════════════
+   PANEL 2 — CALENDAR
+═════════════════════════════════════════════ */
+function initCalendar() {
+  const now = new Date();
+  calYear = now.getFullYear();
+  calMonth = now.getMonth();
+  document.getElementById('calPrev').addEventListener('click', () => {
+    const now = new Date();
+    if (calYear === now.getFullYear() && calMonth === now.getMonth()) return;
+    calMonth--;
+    if (calMonth < 0) { calMonth = 11; calYear--; }
+    buildCalendar();
+  });
+  document.getElementById('calNext').addEventListener('click', () => {
+    calMonth++;
+    if (calMonth > 11) { calMonth = 0; calYear++; }
+    buildCalendar();
+  });
+}
+
+function buildCalendar() {
+  const monthNames = ['January','February','March','April','May','June',
+                      'July','August','September','October','November','December'];
+  document.getElementById('calMonthLabel').textContent = `${monthNames[calMonth]} ${calYear}`;
+
+  const grid = document.getElementById('calGrid');
+  const dayNames = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+  const today = new Date(); today.setHours(0,0,0,0);
+
+  const firstDay = new Date(calYear, calMonth, 1).getDay();
+  const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+
+  let html = dayNames.map(d => `<div class="cal-day-name">${d}</div>`).join('');
+
+  // Empty cells before first day
+  for (let i = 0; i < firstDay; i++) {
+    html += `<div class="cal-day empty"></div>`;
+  }
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const date = new Date(calYear, calMonth, d);
+    const dow = date.getDay();
+    const isPast = date < today;
+    const isClosed = !HOURS[dow]?.open;
+    const isToday = date.getTime() === today.getTime();
+    const isSelected = booking.date && date.getTime() === booking.date.getTime();
+    let cls = 'cal-day';
+    if (isPast || isClosed) cls += ' disabled';
+    if (isToday) cls += ' today';
+    if (isSelected) cls += ' selected';
+    const clickable = !isPast && !isClosed;
+    html += `<div class="${cls}" ${clickable ? `onclick="selectDate(${calYear},${calMonth},${d})"` : ''}>${d}</div>`;
+  }
+
+  grid.innerHTML = html;
+
+  // Re-render time slots if date still selected
+  if (booking.date) renderTimeSlots(booking.date);
+}
+
+function selectDate(y, m, d) {
+  booking.date = new Date(y, m, d);
+  booking.time = null;
+  document.getElementById('step2Next').disabled = true;
+  buildCalendar();
+  renderTimeSlots(booking.date);
+}
+
+/* ═════════════════════════════════════════════
+   PANEL 2 — TIME SLOTS
+═════════════════════════════════════════════ */
+function renderTimeSlots(date) {
+  const wrap = document.getElementById('timeSlotsWrap');
+  const title = document.getElementById('timeSlotsTitle');
+  const grid = document.getElementById('timeSlotsGrid');
+  wrap.style.display = 'block';
+
+  const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const dow = date.getDay();
+  const h = HOURS[dow];
+  title.textContent = `Available times — ${dayNames[dow]}`;
+
+  const svcDur = booking.service ? booking.service.duration : 45;
+  const slots = generateSlots(h.start, h.end, svcDur);
+
+  // Exclude past slots if today
+  const now = new Date();
+  const isToday = date.toDateString() === now.toDateString();
+
+  grid.innerHTML = slots.map(slot => {
+    const [slotH, slotM] = slot.split(':').map(Number);
+    if (isToday && (slotH < now.getHours() || (slotH === now.getHours() && slotM <= now.getMinutes()))) {
+      return `<div class="time-slot" style="opacity:0.25;cursor:default;">${formatTime(slot)}</div>`;
+    }
+    const selected = booking.time === slot;
+    return `<div class="time-slot ${selected ? 'selected' : ''}" onclick="selectTime('${slot}')">${formatTime(slot)}</div>`;
+  }).join('');
+}
+
+function generateSlots([startH, startM], [endH, endM], durationMin) {
+  const slots = [];
+  let cur = startH * 60 + startM;
+  const finish = endH * 60 + endM;
+  while (cur + durationMin <= finish) {
+    const h = Math.floor(cur / 60);
+    const m = cur % 60;
+    slots.push(`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`);
+    cur += durationMin;
+  }
+  return slots;
+}
+
+function formatTime(slot) {
+  const [h, m] = slot.split(':').map(Number);
+  const ampm = h >= 12 ? 'pm' : 'am';
+  const h12 = h % 12 || 12;
+  return `${h12}:${String(m).padStart(2,'0')} ${ampm}`;
+}
+
+function selectTime(slot) {
+  booking.time = slot;
+  document.querySelectorAll('.time-slot').forEach(el => {
+    el.classList.toggle('selected', el.textContent.trim() === formatTime(slot));
+  });
+  document.getElementById('step2Next').disabled = false;
+}
+
+/* ═════════════════════════════════════════════
+   PANEL 3 — SUMMARY + FORM
+═════════════════════════════════════════════ */
+function updateSummaryBar() {
+  const dateStr = booking.date ? booking.date.toLocaleDateString('en-CA', {
+    weekday: 'long', month: 'long', day: 'numeric'
+  }) : '';
+  const timeStr = booking.time ? formatTime(booking.time) : '';
+  document.getElementById('summaryText').innerHTML = `
+    <strong>${booking.service?.name}</strong><br>
+    ${dateStr} at ${timeStr}
+  `;
+  updateMailtoFallback();
+}
+
+function updateMailtoFallback() {
+  const link = document.getElementById('mailtoFallback');
+  const subject = encodeURIComponent(`Appointment Request — ${booking.service?.name}`);
+  const body = encodeURIComponent(
+    `Hi Steveo,\n\nI'd like to book:\n\nService: ${booking.service?.name}\nDate: ${booking.date?.toLocaleDateString()}\nTime: ${formatTime(booking.time)}\n\nPlease confirm.\n\nThanks`
+  );
+  // TODO: Replace with Steveo's actual email address
+  link.href = `mailto:steveo@example.com?subject=${subject}&body=${body}`;
+}
+
+/* ═════════════════════════════════════════════
+   BOOKING FORM SUBMIT
+═════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('bookingForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    booking.name  = document.getElementById('guestName').value.trim();
+    booking.phone = document.getElementById('guestPhone').value.trim();
+    booking.email = document.getElementById('guestEmail').value.trim();
+    booking.notes = document.getElementById('guestNotes').value.trim();
+
+    if (!booking.name || !booking.phone || !booking.email) {
+      showToast('Please fill in all required fields.');
+      return;
+    }
+
+    saveBookingToLocalStorage();
+    showConfirmation();
+  });
+});
+
+function saveBookingToLocalStorage() {
+  const record = {
+    id: `bk_${Date.now()}`,
+    service: booking.service,
+    date: booking.date?.toISOString(),
+    time: booking.time,
+    name: booking.name,
+    phone: booking.phone,
+    email: booking.email,
+    notes: booking.notes,
+    createdAt: new Date().toISOString(),
+    /* TODO: Stripe deposit status — add 'depositPaid: false' when Stripe wired */
+    /* TODO: Email confirmation status — add 'emailSent: false' for automation */
+  };
+  const existing = JSON.parse(localStorage.getItem('steveos_bookings') || '[]');
+  existing.push(record);
+  localStorage.setItem('steveos_bookings', JSON.stringify(existing));
+}
+
+function showConfirmation() {
+  // Hide the step widget panels and show confirmation
+  document.querySelectorAll('.booking-panel').forEach(p => p.style.display = 'none');
+  document.querySelector('.booking-steps').style.display = 'none';
+  const confirm = document.getElementById('bookingConfirmation');
+  confirm.classList.add('show');
+
+  const dateStr = booking.date?.toLocaleDateString('en-CA', {
+    weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'
+  });
+
+  document.getElementById('confirmDetails').innerHTML = `
+    <div class="confirm-row"><span>Service</span><span>${booking.service?.name}</span></div>
+    <div class="confirm-row"><span>Date</span><span>${dateStr}</span></div>
+    <div class="confirm-row"><span>Time</span><span>${formatTime(booking.time)}</span></div>
+    <div class="confirm-row"><span>Duration</span><span>${booking.service?.duration} min</span></div>
+    <div class="confirm-row"><span>Name</span><span>${booking.name}</span></div>
+    <div class="confirm-row"><span>Contact</span><span>${booking.phone}</span></div>
+  `;
+
+  // Build Add to Calendar link (Google Calendar)
+  buildAddToCalLink();
+}
+
+function buildAddToCalLink() {
+  const [slotH, slotM] = booking.time.split(':').map(Number);
+  const start = new Date(booking.date);
+  start.setHours(slotH, slotM, 0, 0);
+  const end = new Date(start.getTime() + booking.service.duration * 60000);
+
+  const fmt = d => d.toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
+  const title = encodeURIComponent(`${booking.service.name} @ Steveo's Shop`);
+  const details = encodeURIComponent(`Booked via steveosshop.ca\nService: ${booking.service.name}`);
+  const loc = encodeURIComponent('25 Greenbriar Dr NW, Calgary, AB');
+  const url = `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${fmt(start)}/${fmt(end)}&details=${details}&location=${loc}`;
+  document.getElementById('addCalLink').href = url;
+}
+
+function resetBooking() {
+  booking = { service: null, date: null, time: null, name: '', phone: '', email: '', notes: '' };
+  document.querySelector('.booking-steps').style.display = '';
+  document.querySelectorAll('.booking-panel').forEach(p => p.style.display = '');
+  document.getElementById('bookingConfirmation').classList.remove('show');
+  document.getElementById('bookingForm').reset();
+  goStep(1);
+}
+
+/* ═════════════════════════════════════════════
+   INSTAGRAM GRID
+═════════════════════════════════════════════ */
+function renderIgGrid() {
+  const grid = document.getElementById('igGrid');
+  if (IG_POSTS.length > 0) {
+    // Render real embeds
+    grid.innerHTML = IG_POSTS.slice(0, IG_GRID_COUNT).map(url => `
+      <div class="ig-embed-item">
+        <blockquote class="instagram-media"
+          data-instgrm-permalink="${url}"
+          data-instgrm-version="14"
+          style="width:100%;min-width:0;margin:0;">
+        </blockquote>
+      </div>
+    `).join('');
+    // Load Instagram embed script
+    const s = document.createElement('script');
+    s.src = '//www.instagram.com/embed.js';
+    s.async = true;
+    document.body.appendChild(s);
+  } else {
+    // Placeholder tiles
+    const placeholders = [
+      { icon: '✂️', label: 'Skin Fade' },
+      { icon: '💈', label: 'Tight Fade' },
+      { icon: '🪒', label: 'Beard Work' },
+      { icon: '🔥', label: 'Textured Crop' },
+      { icon: '⭐', label: 'Combo Cut' },
+      { icon: '🫧', label: 'Hot Towel' },
+    ];
+    grid.innerHTML = placeholders.map(p => `
+      <div class="ig-placeholder" onclick="window.open('https://www.instagram.com/steveo.barber','_blank')">
+        <div class="ig-icon">${p.icon}</div>
+        <div class="ig-label">${p.label}</div>
+      </div>
+    `).join('');
+  }
+}
+
+/* ═════════════════════════════════════════════
+   SCROLL REVEAL
+═════════════════════════════════════════════ */
+function initScrollReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+/* ═════════════════════════════════════════════
+   NAV SCROLL EFFECT
+═════════════════════════════════════════════ */
+function initNav() {
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 60);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
+
+/* ═════════════════════════════════════════════
+   STICKY MOBILE CTA
+═════════════════════════════════════════════ */
+function initStickyCta() {
+  const cta = document.getElementById('sticky-cta');
+  const hero = document.getElementById('hero');
+  const observer = new IntersectionObserver(([entry]) => {
+    cta.classList.toggle('visible', !entry.isIntersecting);
+  }, { threshold: 0 });
+  observer.observe(hero);
+}
+
+/* ═════════════════════════════════════════════
+   MOBILE MENU
+═════════════════════════════════════════════ */
+function initMobileMenu() {
+  const hamburger = document.getElementById('hamburger');
+  const menu = document.getElementById('mobileMenu');
+  const close = document.getElementById('mobileMenuClose');
+
+  function openMenu() {
+    menu.classList.add('open');
+    hamburger.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    menu.classList.remove('open');
+    hamburger.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', openMenu);
+  close.addEventListener('click', closeMenu);
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+}
+
+/* ═════════════════════════════════════════════
+   TOAST
+═════════════════════════════════════════════ */
+function showToast(msg, duration = 3000) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), duration);
+}
+</script>
+
+</body>
+</html>
